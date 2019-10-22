@@ -14,7 +14,6 @@
 #include <avr/pgmspace.h>
 #include <stdlib.h>
 /* Stdlib needed for random() - random number generator */
-
 ///////////////////////////////////////////////////////////
 // Initial game field
 // The string below has 31 elements for each of the 31 rows. The index into 
@@ -187,7 +186,10 @@ static int8_t is_ghost_home(uint8_t x, uint8_t y) {
 // See initialise_pacdots() below for information on how the pacdots array
 // is initialised.
 static void eat_pacdot(void) {
-	// YOUR CODE HERE
+	
+	
+	
+	
 }
 
 // what_is_at(x,y) returns
@@ -562,21 +564,34 @@ int8_t move_pacman(void) {
 	
 	// Work out what is in the direction we want to move
 	int8_t cell_contents = what_is_in_dirn(pacman_x, pacman_y, pacman_direction);
-	if(cell_contents == CELL_IS_WALL) {
+	if(cell_contents == CELL_IS_WALL)  {
+		
+		
 		return 0;	// We can't move - wall is straight ahead
 	}
 	// We can move - erase the pac-man in the current location
 	erase_pixel_at(pacman_x, pacman_y);
 	// Update the pac-man location
-	if(pacman_direction == DIRN_LEFT) {
-		pacman_x--;
-	} else if(pacman_direction == DIRN_RIGHT) {
-		pacman_x++;
-	} else if(pacman_direction == DIRN_UP) {
-		pacman_y--;
-	} else {
-		pacman_y++;
-	}
+	
+	 if (pacman_direction == DIRN_LEFT) {
+		 pacman_x--;
+
+		 if (pacman_x == 0 && pacman_y == 15 ) {
+			 pacman_x = 30 ;
+		 }
+		 
+		 } else if (pacman_direction == DIRN_RIGHT) {
+		 pacman_x++;
+		 if (pacman_x == 30 && pacman_y == 15 ) {
+			 pacman_x = 0 ;
+		 }
+	 }
+		else if(pacman_direction == DIRN_UP) {
+		 pacman_y--;
+		 } else {
+		 pacman_y++;
+	 }
+
 	if(cell_contents >= 0) {
 		// We've encountered a ghost - draw both at the location
 		// Set the background colour to that of the ghost
