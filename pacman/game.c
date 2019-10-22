@@ -13,6 +13,7 @@
 #include "pixel_colour.h"
 #include <avr/pgmspace.h>
 #include <stdlib.h>
+#include "score.h"
 /* Stdlib needed for random() - random number generator */
 ///////////////////////////////////////////////////////////
 // Initial game field
@@ -186,9 +187,11 @@ static int8_t is_ghost_home(uint8_t x, uint8_t y) {
 // See initialise_pacdots() below for information on how the pacdots array
 // is initialised.
 static void eat_pacdot(void) {
-	
-	
-	
+	uint32_t maskval = 1UL << pacman_x; 
+	pacdots[pacman_y] &= ~(maskval); 
+	num_pacdots--;
+	move_cursor(55, 7);
+	printf(("Pacdots Remaining: %d"), num_pacdots);
 	
 }
 
@@ -604,6 +607,7 @@ int8_t move_pacman(void) {
 	} else {
 		if(cell_contents == CELL_CONTAINS_PACDOT) {
 			eat_pacdot();
+			
 		}
 		draw_pacman_at(pacman_x, pacman_y);
 	}

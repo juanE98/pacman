@@ -16,7 +16,8 @@ game.d game.o: .././game.c .././game.h \
  d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h
+ d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
+ .././score.h
 
 .././game.h:
 
@@ -59,3 +60,5 @@ d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h:
 d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
 d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
+
+.././score.h:
