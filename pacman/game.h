@@ -65,4 +65,13 @@ int8_t is_game_over(void);
 // Must only be called after initialise_game().
 int8_t is_level_complete(void);
 
+//Return number of lives pacman has left
+uint8_t get_lives(void); 
+
+//Change pacman's lives
+void set_lives(int8_t num); 
+
+//Reset lives to MAX 
+void reset_lives(void); 
+
 #endif

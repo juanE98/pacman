@@ -87,6 +87,12 @@ static uint32_t pacdots[FIELD_HEIGHT];
 // We also keep a count of the number of pac-dots remaining on the game field
 static uint16_t num_pacdots;
 
+//Lives of pacman (player)
+static uint8_t lives; 
+
+//Initial lives of pacman (player)
+#define MAX_LIVES 3
+
 // Initial pacman location and direction
 #define INIT_PACMAN_X 15
 #define INIT_PACMAN_Y 23
@@ -140,6 +146,28 @@ static uint8_t game_running;
 ///////////////////////////////////////////////////////////
 // Private Functions
 //
+
+uint8_t get_lives (void){
+	return lives; 
+}
+
+void set_lives(int8_t num){
+	lives += num; 
+	//cap max lives 
+	if(lives > MAX_LIVES){
+		lives = MAX_LIVES; 
+		
+	} else if (lives < 0 ){
+		lives  = 0; 
+	}
+	
+}
+void reset_lives(void){
+	lives = MAX_LIVES; 
+}
+
+	
+
 // is_wall_at() returns true (1) if there is a wall at the given 
 // game location, 0 otherwise
 static int8_t is_wall_at (uint8_t x, uint8_t y) {

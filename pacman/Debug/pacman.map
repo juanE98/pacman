@@ -75,6 +75,13 @@ Discarded input sections
  .text          0x00000000        0x0 game.o
  .data          0x00000000        0x0 game.o
  .bss           0x00000000        0x0 game.o
+ .text.get_lives
+                0x00000000        0x6 game.o
+ .text.set_lives
+                0x00000000       0x18 game.o
+ .text.reset_lives
+                0x00000000        0x8 game.o
+ .bss.lives     0x00000000        0x1 game.o
  .text          0x00000000        0x0 joystick.o
  .data          0x00000000        0x0 joystick.o
  .bss           0x00000000        0x0 joystick.o
@@ -550,19 +557,19 @@ END GROUP
  *(.progmem*)
  .progmem.data.init_game_field
                 0x00000136      0x3c2 game.o
- .progmem.data.__c.2306
+ .progmem.data.__c.2312
                 0x000004f8       0x1e project.o
- .progmem.data.__c.2304
+ .progmem.data.__c.2310
                 0x00000516        0xa project.o
- .progmem.data.__c.2296
+ .progmem.data.__c.2302
                 0x00000520       0x21 project.o
- .progmem.data.__c.2294
+ .progmem.data.__c.2300
                 0x00000541        0xf project.o
- .progmem.data.__c.2266
+ .progmem.data.__c.2272
                 0x00000550       0x19 project.o
- .progmem.data.__c.2264
+ .progmem.data.__c.2270
                 0x00000569       0x23 project.o
- .progmem.data.__c.2262
+ .progmem.data.__c.2268
                 0x0000058c        0x8 project.o
  .progmem.data.numbers
                 0x00000594       0x14 scrolling_char_display.o
@@ -1119,122 +1126,122 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x340
+.debug_aranges  0x00000000      0x358
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x30 buttons.o
  .debug_aranges
-                0x00000030       0x80 game.o
+                0x00000030       0x98 game.o
  .debug_aranges
-                0x000000b0       0x88 ledmatrix.o
+                0x000000c8       0x88 ledmatrix.o
  .debug_aranges
-                0x00000138       0x50 project.o
+                0x00000150       0x50 project.o
  .debug_aranges
-                0x00000188       0x40 score.o
+                0x000001a0       0x40 score.o
  .debug_aranges
-                0x000001c8       0x28 scrolling_char_display.o
+                0x000001e0       0x28 scrolling_char_display.o
  .debug_aranges
-                0x000001f0       0x50 serialio.o
+                0x00000208       0x50 serialio.o
  .debug_aranges
-                0x00000240       0x28 spi.o
+                0x00000258       0x28 spi.o
  .debug_aranges
-                0x00000268       0xa8 terminalio.o
+                0x00000280       0xa8 terminalio.o
  .debug_aranges
-                0x00000310       0x30 timer0.o
+                0x00000328       0x30 timer0.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x36ef
+.debug_info     0x00000000     0x3762
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x6cc D:/New folder/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
  .debug_info    0x000006cc      0x193 buttons.o
- .debug_info    0x0000085f      0xf0a game.o
- .debug_info    0x00001769      0x530 ledmatrix.o
- .debug_info    0x00001c99      0x7d9 project.o
- .debug_info    0x00002472      0x146 score.o
- .debug_info    0x000025b8      0x64d scrolling_char_display.o
- .debug_info    0x00002c05      0x3e9 serialio.o
- .debug_info    0x00002fee       0xc1 spi.o
- .debug_info    0x000030af      0x532 terminalio.o
- .debug_info    0x000035e1      0x10e timer0.o
+ .debug_info    0x0000085f      0xf7d game.o
+ .debug_info    0x000017dc      0x530 ledmatrix.o
+ .debug_info    0x00001d0c      0x7d9 project.o
+ .debug_info    0x000024e5      0x146 score.o
+ .debug_info    0x0000262b      0x64d scrolling_char_display.o
+ .debug_info    0x00002c78      0x3e9 serialio.o
+ .debug_info    0x00003061       0xc1 spi.o
+ .debug_info    0x00003122      0x532 terminalio.o
+ .debug_info    0x00003654      0x10e timer0.o
 
-.debug_abbrev   0x00000000     0x1407
+.debug_abbrev   0x00000000     0x141b
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x66e D:/New folder/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
  .debug_abbrev  0x0000066e       0xd6 buttons.o
- .debug_abbrev  0x00000744      0x3aa game.o
- .debug_abbrev  0x00000aee      0x137 ledmatrix.o
- .debug_abbrev  0x00000c25      0x1f1 project.o
- .debug_abbrev  0x00000e16       0xa5 score.o
- .debug_abbrev  0x00000ebb      0x122 scrolling_char_display.o
- .debug_abbrev  0x00000fdd      0x230 serialio.o
- .debug_abbrev  0x0000120d       0x7c spi.o
- .debug_abbrev  0x00001289       0xe3 terminalio.o
- .debug_abbrev  0x0000136c       0x9b timer0.o
+ .debug_abbrev  0x00000744      0x3be game.o
+ .debug_abbrev  0x00000b02      0x137 ledmatrix.o
+ .debug_abbrev  0x00000c39      0x1f1 project.o
+ .debug_abbrev  0x00000e2a       0xa5 score.o
+ .debug_abbrev  0x00000ecf      0x122 scrolling_char_display.o
+ .debug_abbrev  0x00000ff1      0x230 serialio.o
+ .debug_abbrev  0x00001221       0x7c spi.o
+ .debug_abbrev  0x0000129d       0xe3 terminalio.o
+ .debug_abbrev  0x00001380       0x9b timer0.o
 
-.debug_line     0x00000000     0x1cec
+.debug_line     0x00000000     0x1d43
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x151 D:/New folder/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
  .debug_line    0x00000151      0x151 buttons.o
- .debug_line    0x000002a2      0x7f5 game.o
- .debug_line    0x00000a97      0x2d8 ledmatrix.o
- .debug_line    0x00000d6f      0x4b5 project.o
- .debug_line    0x00001224       0xf0 score.o
- .debug_line    0x00001314      0x22e scrolling_char_display.o
- .debug_line    0x00001542      0x2a3 serialio.o
- .debug_line    0x000017e5       0xfe spi.o
- .debug_line    0x000018e3      0x307 terminalio.o
- .debug_line    0x00001bea      0x102 timer0.o
+ .debug_line    0x000002a2      0x84c game.o
+ .debug_line    0x00000aee      0x2d8 ledmatrix.o
+ .debug_line    0x00000dc6      0x4b5 project.o
+ .debug_line    0x0000127b       0xf0 score.o
+ .debug_line    0x0000136b      0x22e scrolling_char_display.o
+ .debug_line    0x00001599      0x2a3 serialio.o
+ .debug_line    0x0000183c       0xfe spi.o
+ .debug_line    0x0000193a      0x307 terminalio.o
+ .debug_line    0x00001c41      0x102 timer0.o
 
-.debug_frame    0x00000000      0xa58
+.debug_frame    0x00000000      0xa88
  *(.debug_frame)
  .debug_frame   0x00000000       0x80 buttons.o
- .debug_frame   0x00000080      0x2e8 game.o
- .debug_frame   0x00000368      0x154 ledmatrix.o
- .debug_frame   0x000004bc      0x118 project.o
- .debug_frame   0x000005d4       0x64 score.o
- .debug_frame   0x00000638       0x50 scrolling_char_display.o
- .debug_frame   0x00000688       0xfc serialio.o
- .debug_frame   0x00000784       0x34 spi.o
- .debug_frame   0x000007b8      0x23c terminalio.o
- .debug_frame   0x000009f4       0x64 timer0.o
+ .debug_frame   0x00000080      0x318 game.o
+ .debug_frame   0x00000398      0x154 ledmatrix.o
+ .debug_frame   0x000004ec      0x118 project.o
+ .debug_frame   0x00000604       0x64 score.o
+ .debug_frame   0x00000668       0x50 scrolling_char_display.o
+ .debug_frame   0x000006b8       0xfc serialio.o
+ .debug_frame   0x000007b4       0x34 spi.o
+ .debug_frame   0x000007e8      0x23c terminalio.o
+ .debug_frame   0x00000a24       0x64 timer0.o
 
-.debug_str      0x00000000     0x1068
+.debug_str      0x00000000     0x107e
  *(.debug_str)
  .debug_str     0x00000000      0x255 D:/New folder/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
  .debug_str     0x00000255      0x1cd buttons.o
                                 0x215 (size before relaxing)
- .debug_str     0x00000422      0x42f game.o
-                                0x60a (size before relaxing)
- .debug_str     0x00000851      0x185 ledmatrix.o
+ .debug_str     0x00000422      0x445 game.o
+                                0x630 (size before relaxing)
+ .debug_str     0x00000867      0x185 ledmatrix.o
                                 0x31f (size before relaxing)
- .debug_str     0x000009d6      0x230 project.o
+ .debug_str     0x000009ec      0x230 project.o
                                 0x48e (size before relaxing)
- .debug_str     0x00000c06       0x4b score.o
+ .debug_str     0x00000c1c       0x4b score.o
                                 0x1cb (size before relaxing)
- .debug_str     0x00000c51      0x1b9 scrolling_char_display.o
+ .debug_str     0x00000c67      0x1b9 scrolling_char_display.o
                                 0x3b3 (size before relaxing)
- .debug_str     0x00000e0a       0xda serialio.o
+ .debug_str     0x00000e20       0xda serialio.o
                                 0x2db (size before relaxing)
- .debug_str     0x00000ee4       0x18 spi.o
+ .debug_str     0x00000efa       0x18 spi.o
                                 0x19b (size before relaxing)
- .debug_str     0x00000efc      0x12e terminalio.o
+ .debug_str     0x00000f12      0x12e terminalio.o
                                 0x3e7 (size before relaxing)
- .debug_str     0x0000102a       0x3e timer0.o
+ .debug_str     0x00001040       0x3e timer0.o
                                 0x1cc (size before relaxing)
 
-.debug_loc      0x00000000     0x2d88
+.debug_loc      0x00000000     0x2da9
  *(.debug_loc)
  .debug_loc     0x00000000      0x179 buttons.o
- .debug_loc     0x00000179     0x1449 game.o
- .debug_loc     0x000015c2      0x54a ledmatrix.o
- .debug_loc     0x00001b0c      0x61b project.o
- .debug_loc     0x00002127      0x242 scrolling_char_display.o
- .debug_loc     0x00002369      0x28b serialio.o
- .debug_loc     0x000025f4       0x59 spi.o
- .debug_loc     0x0000264d      0x6d8 terminalio.o
- .debug_loc     0x00002d25       0x63 timer0.o
+ .debug_loc     0x00000179     0x146a game.o
+ .debug_loc     0x000015e3      0x54a ledmatrix.o
+ .debug_loc     0x00001b2d      0x61b project.o
+ .debug_loc     0x00002148      0x242 scrolling_char_display.o
+ .debug_loc     0x0000238a      0x28b serialio.o
+ .debug_loc     0x00002615       0x59 spi.o
+ .debug_loc     0x0000266e      0x6d8 terminalio.o
+ .debug_loc     0x00002d46       0x63 timer0.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1254,18 +1261,18 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x3f0
+.debug_ranges   0x00000000      0x408
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x20 buttons.o
- .debug_ranges  0x00000020      0x1c0 game.o
- .debug_ranges  0x000001e0       0x78 ledmatrix.o
- .debug_ranges  0x00000258       0x40 project.o
- .debug_ranges  0x00000298       0x30 score.o
- .debug_ranges  0x000002c8       0x18 scrolling_char_display.o
- .debug_ranges  0x000002e0       0x40 serialio.o
- .debug_ranges  0x00000320       0x18 spi.o
- .debug_ranges  0x00000338       0x98 terminalio.o
- .debug_ranges  0x000003d0       0x20 timer0.o
+ .debug_ranges  0x00000020      0x1d8 game.o
+ .debug_ranges  0x000001f8       0x78 ledmatrix.o
+ .debug_ranges  0x00000270       0x40 project.o
+ .debug_ranges  0x000002b0       0x30 score.o
+ .debug_ranges  0x000002e0       0x18 scrolling_char_display.o
+ .debug_ranges  0x000002f8       0x40 serialio.o
+ .debug_ranges  0x00000338       0x18 spi.o
+ .debug_ranges  0x00000350       0x98 terminalio.o
+ .debug_ranges  0x000003e8       0x20 timer0.o
 
 .debug_macro
  *(.debug_macro)

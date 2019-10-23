@@ -13,21 +13,21 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00002918  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000340  00000000  00000000  00002958  2**0
+  5 .debug_aranges 00000358  00000000  00000000  00002958  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000036ef  00000000  00000000  00002c98  2**0
+  6 .debug_info   00003762  00000000  00000000  00002cb0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00001407  00000000  00000000  00006387  2**0
+  7 .debug_abbrev 0000141b  00000000  00000000  00006412  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001cec  00000000  00000000  0000778e  2**0
+  8 .debug_line   00001d43  00000000  00000000  0000782d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000a58  00000000  00000000  0000947c  2**2
+  9 .debug_frame  00000a88  00000000  00000000  00009570  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00001068  00000000  00000000  00009ed4  2**0
+ 10 .debug_str    0000107e  00000000  00000000  00009ff8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00002d88  00000000  00000000  0000af3c  2**0
+ 11 .debug_loc    00002da9  00000000  00000000  0000b076  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000003f0  00000000  00000000  0000dcc4  2**0
+ 12 .debug_ranges 00000408  00000000  00000000  0000de1f  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -641,31 +641,31 @@ Disassembly of section .text:
      4f4:	2d 2d       	mov	r18, r13
      4f6:	4a 00       	.word	0x004a	; ????
 
-000004f8 <__c.2306>:
+000004f8 <__c.2312>:
      4f8:	50 72 65 73 73 20 61 20 62 75 74 74 6f 6e 20 74     Press a button t
      508:	6f 20 73 74 61 72 74 20 61 67 61 69 6e 00           o start again.
 
-00000516 <__c.2304>:
+00000516 <__c.2310>:
      516:	47 41 4d 45 20 4f 56 45 52 00                       GAME OVER.
 
-00000520 <__c.2296>:
+00000520 <__c.2302>:
      520:	50 75 73 68 20 61 20 62 75 74 74 6f 6e 20 6f 72     Push a button or
      530:	20 6b 65 79 20 74 6f 20 63 6f 6e 74 69 6e 75 65      key to continue
 	...
 
-00000541 <__c.2294>:
+00000541 <__c.2300>:
      541:	4c 65 76 65 6c 20 63 6f 6d 70 6c 65 74 65 00        Level complete.
 
-00000550 <__c.2266>:
+00000550 <__c.2272>:
      550:	53 74 75 64 65 6e 74 20 4e 75 6d 62 65 72 3a 20     Student Number: 
      560:	34 34 33 31 37 39 36 32 00                          44317962.
 
-00000569 <__c.2264>:
+00000569 <__c.2270>:
      569:	43 53 53 45 32 30 31 30 20 70 72 6f 6a 65 63 74     CSSE2010 project
      579:	20 62 79 20 3c 4a 75 61 6e 20 45 73 70 61 72 65      by <Juan Espare
      589:	73 3e 00                                            s>.
 
-0000058c <__c.2262>:
+0000058c <__c.2268>:
      58c:	50 61 63 2d 4d 61 6e 00                             Pac-Man.
 
 00000594 <numbers>:
@@ -1068,15 +1068,14 @@ ISR(PCINT1_vect) {
      7e0:	18 95       	reti
 
 000007e2 <is_ghost_home>:
+		lives  = 0; 
+	}
+	
 }
-
-// Returns true (1) if the given location is the home of the ghosts
-// (this includes the entry to the home of the ghosts)
-static int8_t is_ghost_home(uint8_t x, uint8_t y) {
-	if(y == GHOST_HOME_Y && x >= GHOST_HOME_X_LEFT && x <= GHOST_HOME_X_RIGHT) {
+void reset_lives(void){
+	lives = MAX_LIVES; 
      7e2:	6f 30       	cpi	r22, 0x0F	; 15
      7e4:	39 f4       	brne	.+14     	; 0x7f4 <is_ghost_home+0x12>
-		return 1;
      7e6:	94 ef       	ldi	r25, 0xF4	; 244
      7e8:	98 0f       	add	r25, r24
      7ea:	81 e0       	ldi	r24, 0x01	; 1
@@ -1084,15 +1083,8 @@ static int8_t is_ghost_home(uint8_t x, uint8_t y) {
      7ee:	60 f0       	brcs	.+24     	; 0x808 <is_ghost_home+0x26>
      7f0:	80 e0       	ldi	r24, 0x00	; 0
      7f2:	08 95       	ret
-	} else if(y == GHOST_HOME_ENTRY_Y && x >= GHOST_HOME_ENTRY_X_LEFT
      7f4:	6e 30       	cpi	r22, 0x0E	; 14
      7f6:	39 f4       	brne	.+14     	; 0x806 <is_ghost_home+0x24>
-
-// Returns true (1) if the given location is the home of the ghosts
-// (this includes the entry to the home of the ghosts)
-static int8_t is_ghost_home(uint8_t x, uint8_t y) {
-	if(y == GHOST_HOME_Y && x >= GHOST_HOME_X_LEFT && x <= GHOST_HOME_X_RIGHT) {
-		return 1;
      7f8:	92 ef       	ldi	r25, 0xF2	; 242
      7fa:	98 0f       	add	r25, r24
      7fc:	81 e0       	ldi	r24, 0x01	; 1
@@ -1100,33 +1092,14 @@ static int8_t is_ghost_home(uint8_t x, uint8_t y) {
      800:	18 f0       	brcs	.+6      	; 0x808 <is_ghost_home+0x26>
      802:	80 e0       	ldi	r24, 0x00	; 0
      804:	08 95       	ret
-	} else if(y == GHOST_HOME_ENTRY_Y && x >= GHOST_HOME_ENTRY_X_LEFT
-			&& x <= GHOST_HOME_ENTRY_X_RIGHT) {
-		return 1;
-	} else {
-		return 0;
      806:	80 e0       	ldi	r24, 0x00	; 0
-	}
-}
      808:	08 95       	ret
 
 0000080a <what_is_in_dirn>:
-
-// what_is_in_dirn(x,y,direction) returns what is in the cell one from 
-// the cell at (x,y) in the given direction - provided that is not off
-// the game field. (If it is, we just indicate that a wall is there.)
-// We check for a wall first because this also checks that we're not at the edge
-static int8_t what_is_in_dirn(uint8_t x, uint8_t y, uint8_t direction) {
      80a:	cf 92       	push	r12
      80c:	df 92       	push	r13
      80e:	ef 92       	push	r14
      810:	ff 92       	push	r15
-	// delta_x and delta_y keep track of the change to the current x,y
-	// - we set these based on the direction we're checking in. One of these
-	// will end up as -1 or +1, the other will stay at 0.
-	int8_t delta_x = 0;
-	int8_t delta_y = 0;
-	switch(direction) {
      812:	41 30       	cpi	r20, 0x01	; 1
      814:	91 f0       	breq	.+36     	; 0x83a <what_is_in_dirn+0x30>
      816:	28 f0       	brcs	.+10     	; 0x822 <what_is_in_dirn+0x18>
@@ -1135,101 +1108,31 @@ static int8_t what_is_in_dirn(uint8_t x, uint8_t y, uint8_t direction) {
      81c:	43 30       	cpi	r20, 0x03	; 3
      81e:	99 f0       	breq	.+38     	; 0x846 <what_is_in_dirn+0x3c>
      820:	5e c0       	rjmp	.+188    	; 0x8de <what_is_in_dirn+0xd4>
-		case DIRN_LEFT:
-			if(x == 0) {
      822:	88 23       	and	r24, r24
      824:	09 f4       	brne	.+2      	; 0x828 <what_is_in_dirn+0x1e>
      826:	5d c0       	rjmp	.+186    	; 0x8e2 <what_is_in_dirn+0xd8>
-static int8_t what_is_in_dirn(uint8_t x, uint8_t y, uint8_t direction) {
-	// delta_x and delta_y keep track of the change to the current x,y
-	// - we set these based on the direction we're checking in. One of these
-	// will end up as -1 or +1, the other will stay at 0.
-	int8_t delta_x = 0;
-	int8_t delta_y = 0;
      828:	20 e0       	ldi	r18, 0x00	; 0
-		case DIRN_LEFT:
-			if(x == 0) {
-				// We can't move left since we're at the edge
-				return CELL_IS_WALL;
-			}
-			delta_x = -1;
      82a:	9f ef       	ldi	r25, 0xFF	; 255
      82c:	11 c0       	rjmp	.+34     	; 0x850 <what_is_in_dirn+0x46>
-			break;
-		case DIRN_RIGHT:
-			if(x == FIELD_WIDTH-1) {
      82e:	8e 31       	cpi	r24, 0x1E	; 30
      830:	09 f4       	brne	.+2      	; 0x834 <what_is_in_dirn+0x2a>
      832:	59 c0       	rjmp	.+178    	; 0x8e6 <what_is_in_dirn+0xdc>
-static int8_t what_is_in_dirn(uint8_t x, uint8_t y, uint8_t direction) {
-	// delta_x and delta_y keep track of the change to the current x,y
-	// - we set these based on the direction we're checking in. One of these
-	// will end up as -1 or +1, the other will stay at 0.
-	int8_t delta_x = 0;
-	int8_t delta_y = 0;
      834:	20 e0       	ldi	r18, 0x00	; 0
-		case DIRN_RIGHT:
-			if(x == FIELD_WIDTH-1) {
-				// We can't move right since we're at the edge
-				return CELL_IS_WALL;
-			}
-			delta_x = 1;
      836:	91 e0       	ldi	r25, 0x01	; 1
      838:	0b c0       	rjmp	.+22     	; 0x850 <what_is_in_dirn+0x46>
-			break;
-		case DIRN_UP:
-			if(y == 0) {
      83a:	66 23       	and	r22, r22
      83c:	09 f4       	brne	.+2      	; 0x840 <what_is_in_dirn+0x36>
      83e:	55 c0       	rjmp	.+170    	; 0x8ea <what_is_in_dirn+0xe0>
-				// We can't move up since we're at the edge
-				return CELL_IS_WALL;
-			}
-			delta_y = -1;
      840:	2f ef       	ldi	r18, 0xFF	; 255
-// We check for a wall first because this also checks that we're not at the edge
-static int8_t what_is_in_dirn(uint8_t x, uint8_t y, uint8_t direction) {
-	// delta_x and delta_y keep track of the change to the current x,y
-	// - we set these based on the direction we're checking in. One of these
-	// will end up as -1 or +1, the other will stay at 0.
-	int8_t delta_x = 0;
      842:	90 e0       	ldi	r25, 0x00	; 0
      844:	05 c0       	rjmp	.+10     	; 0x850 <what_is_in_dirn+0x46>
-				return CELL_IS_WALL;
-			}
-			delta_y = -1;
-			break;
-		case DIRN_DOWN:
-			if(y == FIELD_HEIGHT-1) {
      846:	6e 31       	cpi	r22, 0x1E	; 30
      848:	09 f4       	brne	.+2      	; 0x84c <what_is_in_dirn+0x42>
      84a:	51 c0       	rjmp	.+162    	; 0x8ee <what_is_in_dirn+0xe4>
-				// We can't move down since we're at the edge
-				return CELL_IS_WALL;
-			}
-			delta_y = 1;
      84c:	21 e0       	ldi	r18, 0x01	; 1
-// We check for a wall first because this also checks that we're not at the edge
-static int8_t what_is_in_dirn(uint8_t x, uint8_t y, uint8_t direction) {
-	// delta_x and delta_y keep track of the change to the current x,y
-	// - we set these based on the direction we're checking in. One of these
-	// will end up as -1 or +1, the other will stay at 0.
-	int8_t delta_x = 0;
      84e:	90 e0       	ldi	r25, 0x00	; 0
-			break;
-		default:	// Shouldn't happen - we just return CELL_IS_WALL if
-			// the direction given is invalid
-			return CELL_IS_WALL;
-	}	
-	return what_is_at(x + delta_x, y + delta_y);
      850:	62 0f       	add	r22, r18
      852:	89 0f       	add	r24, r25
-}
-
-// is_pacman_at() returns true(1) if the pacman is at the given 
-// game location (x,y), 0 otherwise
-static int8_t is_pacman_at(uint8_t x, uint8_t y) {
-	return (x == pacman_x && y == pacman_y);
      854:	90 91 b9 01 	lds	r25, 0x01B9	; 0x8001b9 <pacman_x>
      858:	89 13       	cpse	r24, r25
      85a:	05 c0       	rjmp	.+10     	; 0x866 <what_is_in_dirn+0x5c>
@@ -1241,19 +1144,7 @@ static int8_t is_pacman_at(uint8_t x, uint8_t y) {
      868:	b1 e0       	ldi	r27, 0x01	; 1
      86a:	ef ea       	ldi	r30, 0xAF	; 175
      86c:	f1 e0       	ldi	r31, 0x01	; 1
-// We check for a wall first because this also checks that we're not at the edge
-static int8_t what_is_in_dirn(uint8_t x, uint8_t y, uint8_t direction) {
-	// delta_x and delta_y keep track of the change to the current x,y
-	// - we set these based on the direction we're checking in. One of these
-	// will end up as -1 or +1, the other will stay at 0.
-	int8_t delta_x = 0;
      86e:	90 e0       	ldi	r25, 0x00	; 0
-	if(is_pacman_at(x,y)) {
-		return CELL_CONTAINS_PACMAN;
-	} else { // Check for ghosts next - these take priority over dots
-		// BUT note that there may be a pacdot at the same location
-		for(int8_t i = 0; i < NUM_GHOSTS; i++) {
-			if(x == ghost_x[i] && y == ghost_y[i]) {
      870:	2d 91       	ld	r18, X+
      872:	82 13       	cpse	r24, r18
      874:	04 c0       	rjmp	.+8      	; 0x87e <what_is_in_dirn+0x74>
@@ -1263,32 +1154,12 @@ static int8_t what_is_in_dirn(uint8_t x, uint8_t y, uint8_t direction) {
      87c:	3c c0       	rjmp	.+120    	; 0x8f6 <what_is_in_dirn+0xec>
      87e:	9f 5f       	subi	r25, 0xFF	; 255
      880:	31 96       	adiw	r30, 0x01	; 1
-static int8_t what_is_at(uint8_t x, uint8_t y) {
-	if(is_pacman_at(x,y)) {
-		return CELL_CONTAINS_PACMAN;
-	} else { // Check for ghosts next - these take priority over dots
-		// BUT note that there may be a pacdot at the same location
-		for(int8_t i = 0; i < NUM_GHOSTS; i++) {
      882:	94 30       	cpi	r25, 0x04	; 4
      884:	a9 f7       	brne	.-22     	; 0x870 <what_is_in_dirn+0x66>
-
-// is_pacdot_at() returns true (1) if there is a pacdot at the given
-// game location, 0 otherwise
-static int8_t is_pacdot_at (uint8_t x, uint8_t y) {
-	// Get the details for the row
-	uint32_t dots_on_row = pacdots[y];
      886:	46 2f       	mov	r20, r22
      888:	50 e0       	ldi	r21, 0x00	; 0
-	// Extract the value for the column x (which is in bit x)
-	if(dots_on_row & (1UL<< x)) {
      88a:	28 2f       	mov	r18, r24
      88c:	30 e0       	ldi	r19, 0x00	; 0
-
-// is_pacdot_at() returns true (1) if there is a pacdot at the given
-// game location, 0 otherwise
-static int8_t is_pacdot_at (uint8_t x, uint8_t y) {
-	// Get the details for the row
-	uint32_t dots_on_row = pacdots[y];
      88e:	fa 01       	movw	r30, r20
      890:	ee 0f       	add	r30, r30
      892:	ff 1f       	adc	r31, r31
@@ -1296,12 +1167,6 @@ static int8_t is_pacdot_at (uint8_t x, uint8_t y) {
      896:	ff 1f       	adc	r31, r31
      898:	e4 54       	subi	r30, 0x44	; 68
      89a:	fe 4f       	sbci	r31, 0xFE	; 254
-			if(x == ghost_x[i] && y == ghost_y[i]) {
-				return i;	// ghost number
-			}
-		}
-	}
-	if (is_pacdot_at(x,y)) {
      89c:	c0 80       	ld	r12, Z
      89e:	d1 80       	ldd	r13, Z+1	; 0x01
      8a0:	e2 80       	ldd	r14, Z+2	; 0x02
@@ -1316,12 +1181,6 @@ static int8_t is_pacdot_at (uint8_t x, uint8_t y) {
      8b2:	d2 f7       	brpl	.-12     	; 0x8a8 <what_is_in_dirn+0x9e>
      8b4:	c0 fc       	sbrc	r12, 0
      8b6:	21 c0       	rjmp	.+66     	; 0x8fa <what_is_in_dirn+0xf0>
-//
-// is_wall_at() returns true (1) if there is a wall at the given 
-// game location, 0 otherwise
-static int8_t is_wall_at (uint8_t x, uint8_t y) {
-	// Get information about any wall in that position
-	char wall_character = pgm_read_byte(& init_game_field[y * FIELD_WIDTH + x]);
      8b8:	9f e1       	ldi	r25, 0x1F	; 31
      8ba:	94 9f       	mul	r25, r20
      8bc:	f0 01       	movw	r30, r0
@@ -1333,117 +1192,36 @@ static int8_t is_wall_at (uint8_t x, uint8_t y) {
      8c8:	ea 5c       	subi	r30, 0xCA	; 202
      8ca:	fe 4f       	sbci	r31, 0xFE	; 254
      8cc:	e4 91       	lpm	r30, Z
-	return (wall_character != ' ' && wall_character != '.'
-			&& wall_character != 'P');
      8ce:	e0 32       	cpi	r30, 0x20	; 32
      8d0:	c1 f0       	breq	.+48     	; 0x902 <__stack+0x3>
-// is_wall_at() returns true (1) if there is a wall at the given 
-// game location, 0 otherwise
-static int8_t is_wall_at (uint8_t x, uint8_t y) {
-	// Get information about any wall in that position
-	char wall_character = pgm_read_byte(& init_game_field[y * FIELD_WIDTH + x]);
-	return (wall_character != ' ' && wall_character != '.'
      8d2:	ee 32       	cpi	r30, 0x2E	; 46
      8d4:	b1 f0       	breq	.+44     	; 0x902 <__stack+0x3>
-			&& wall_character != 'P');
      8d6:	e0 35       	cpi	r30, 0x50	; 80
      8d8:	a1 f0       	breq	.+40     	; 0x902 <__stack+0x3>
-		}
-	}
-	if (is_pacdot_at(x,y)) {
-		return CELL_CONTAINS_PACDOT;
-	} else if (is_wall_at(x,y)) {
-		return CELL_IS_WALL;
      8da:	8e ef       	ldi	r24, 0xFE	; 254
      8dc:	17 c0       	rjmp	.+46     	; 0x90c <__stack+0xd>
-			}
-			delta_y = 1;
-			break;
-		default:	// Shouldn't happen - we just return CELL_IS_WALL if
-			// the direction given is invalid
-			return CELL_IS_WALL;
      8de:	8e ef       	ldi	r24, 0xFE	; 254
      8e0:	15 c0       	rjmp	.+42     	; 0x90c <__stack+0xd>
-	int8_t delta_y = 0;
-	switch(direction) {
-		case DIRN_LEFT:
-			if(x == 0) {
-				// We can't move left since we're at the edge
-				return CELL_IS_WALL;
      8e2:	8e ef       	ldi	r24, 0xFE	; 254
      8e4:	13 c0       	rjmp	.+38     	; 0x90c <__stack+0xd>
-			delta_x = -1;
-			break;
-		case DIRN_RIGHT:
-			if(x == FIELD_WIDTH-1) {
-				// We can't move right since we're at the edge
-				return CELL_IS_WALL;
      8e6:	8e ef       	ldi	r24, 0xFE	; 254
      8e8:	11 c0       	rjmp	.+34     	; 0x90c <__stack+0xd>
-			delta_x = 1;
-			break;
-		case DIRN_UP:
-			if(y == 0) {
-				// We can't move up since we're at the edge
-				return CELL_IS_WALL;
      8ea:	8e ef       	ldi	r24, 0xFE	; 254
      8ec:	0f c0       	rjmp	.+30     	; 0x90c <__stack+0xd>
-			delta_y = -1;
-			break;
-		case DIRN_DOWN:
-			if(y == FIELD_HEIGHT-1) {
-				// We can't move down since we're at the edge
-				return CELL_IS_WALL;
      8ee:	8e ef       	ldi	r24, 0xFE	; 254
      8f0:	0d c0       	rjmp	.+26     	; 0x90c <__stack+0xd>
-// what_is_at(x,y) returns
-//		CELL_EMPTY, CELL_CONTAINS_PACDOT, CELL_CONTAINS_PACMAN, CELL_IS_WALL,
-//		CELL_IS_GHOST_HOME or the ghost number if the cell contains a ghost
-static int8_t what_is_at(uint8_t x, uint8_t y) {
-	if(is_pacman_at(x,y)) {
-		return CELL_CONTAINS_PACMAN;
      8f2:	8d ef       	ldi	r24, 0xFD	; 253
      8f4:	0b c0       	rjmp	.+22     	; 0x90c <__stack+0xd>
-	} else { // Check for ghosts next - these take priority over dots
-		// BUT note that there may be a pacdot at the same location
-		for(int8_t i = 0; i < NUM_GHOSTS; i++) {
-			if(x == ghost_x[i] && y == ghost_y[i]) {
      8f6:	89 2f       	mov	r24, r25
      8f8:	09 c0       	rjmp	.+18     	; 0x90c <__stack+0xd>
-				return i;	// ghost number
-			}
-		}
-	}
-	if (is_pacdot_at(x,y)) {
-		return CELL_CONTAINS_PACDOT;
      8fa:	8c ef       	ldi	r24, 0xFC	; 252
      8fc:	07 c0       	rjmp	.+14     	; 0x90c <__stack+0xd>
-	} else if (is_wall_at(x,y)) {
-		return CELL_IS_WALL;
-	} else if(is_ghost_home(x,y)) {
-		return CELL_IS_GHOST_HOME;
      8fe:	8f ef       	ldi	r24, 0xFF	; 255
      900:	05 c0       	rjmp	.+10     	; 0x90c <__stack+0xd>
-	}
-	if (is_pacdot_at(x,y)) {
-		return CELL_CONTAINS_PACDOT;
-	} else if (is_wall_at(x,y)) {
-		return CELL_IS_WALL;
-	} else if(is_ghost_home(x,y)) {
      902:	0e 94 f1 03 	call	0x7e2	; 0x7e2 <is_ghost_home>
      906:	81 11       	cpse	r24, r1
      908:	fa cf       	rjmp	.-12     	; 0x8fe <what_is_in_dirn+0xf4>
-		return CELL_IS_GHOST_HOME;
-	}
-	// If we get here, we haven't found anything else - cell is empty
-	return CELL_EMPTY;
      90a:	8b ef       	ldi	r24, 0xFB	; 251
-		default:	// Shouldn't happen - we just return CELL_IS_WALL if
-			// the direction given is invalid
-			return CELL_IS_WALL;
-	}	
-	return what_is_at(x + delta_x, y + delta_y);
-}
      90c:	ff 90       	pop	r15
      90e:	ef 90       	pop	r14
      910:	df 90       	pop	r13
@@ -1451,12 +1229,6 @@ static int8_t what_is_at(uint8_t x, uint8_t y) {
      914:	08 95       	ret
 
 00000916 <determine_dirns_ghost_can_move_in>:
-// - a pacdot
-// - empty
-// It can not move there if the cell is a ghost or a wall.
-// If we're in the ghost home we can move to another cell in the ghost home.
-// If we're outside the ghost home we can't move into it.
-static int8_t determine_dirns_ghost_can_move_in(uint8_t x, uint8_t y) {
      916:	cf 92       	push	r12
      918:	df 92       	push	r13
      91a:	ef 92       	push	r14
@@ -1467,44 +1239,20 @@ static int8_t determine_dirns_ghost_can_move_in(uint8_t x, uint8_t y) {
      924:	df 93       	push	r29
      926:	08 2f       	mov	r16, r24
      928:	f6 2e       	mov	r15, r22
-	int8_t return_value = 0;
-	int8_t posn_is_in_ghost_home = is_ghost_home(x,y);
      92a:	0e 94 f1 03 	call	0x7e2	; 0x7e2 <is_ghost_home>
      92e:	e8 2e       	mov	r14, r24
      930:	c0 e0       	ldi	r28, 0x00	; 0
      932:	d0 e0       	ldi	r29, 0x00	; 0
-// - empty
-// It can not move there if the cell is a ghost or a wall.
-// If we're in the ghost home we can move to another cell in the ghost home.
-// If we're outside the ghost home we can't move into it.
-static int8_t determine_dirns_ghost_can_move_in(uint8_t x, uint8_t y) {
-	int8_t return_value = 0;
      934:	10 e0       	ldi	r17, 0x00	; 0
-		if(adjacent_cell_contents < CELL_IS_WALL) {
-			// cell is empty or pacdot or pacman
-			return_value |= (1 << dirn);
-		} else if(posn_is_in_ghost_home && adjacent_cell_contents == CELL_IS_GHOST_HOME) {
-			// we're in the ghost home and can move to an empty cell in the ghost home
-			return_value |= (1 << dirn);
      936:	cc 24       	eor	r12, r12
      938:	c3 94       	inc	r12
      93a:	d1 2c       	mov	r13, r1
-// If we're outside the ghost home we can't move into it.
-static int8_t determine_dirns_ghost_can_move_in(uint8_t x, uint8_t y) {
-	int8_t return_value = 0;
-	int8_t posn_is_in_ghost_home = is_ghost_home(x,y);
-	for(int8_t dirn = DIRN_LEFT; dirn <= DIRN_DOWN; dirn++) {
-		int8_t adjacent_cell_contents = what_is_in_dirn(x,y,dirn);
      93c:	4c 2f       	mov	r20, r28
      93e:	6f 2d       	mov	r22, r15
      940:	80 2f       	mov	r24, r16
      942:	0e 94 05 04 	call	0x80a	; 0x80a <what_is_in_dirn>
-		
-		if(adjacent_cell_contents < CELL_IS_WALL) {
      946:	8e 3f       	cpi	r24, 0xFE	; 254
      948:	4c f4       	brge	.+18     	; 0x95c <determine_dirns_ghost_can_move_in+0x46>
-			// cell is empty or pacdot or pacman
-			return_value |= (1 << dirn);
      94a:	c6 01       	movw	r24, r12
      94c:	0c 2e       	mov	r0, r28
      94e:	02 c0       	rjmp	.+4      	; 0x954 <determine_dirns_ghost_can_move_in+0x3e>
@@ -1514,13 +1262,10 @@ static int8_t determine_dirns_ghost_can_move_in(uint8_t x, uint8_t y) {
      956:	e2 f7       	brpl	.-8      	; 0x950 <determine_dirns_ghost_can_move_in+0x3a>
      958:	18 2b       	or	r17, r24
      95a:	0c c0       	rjmp	.+24     	; 0x974 <determine_dirns_ghost_can_move_in+0x5e>
-		} else if(posn_is_in_ghost_home && adjacent_cell_contents == CELL_IS_GHOST_HOME) {
      95c:	ee 20       	and	r14, r14
      95e:	51 f0       	breq	.+20     	; 0x974 <determine_dirns_ghost_can_move_in+0x5e>
      960:	8f 3f       	cpi	r24, 0xFF	; 255
      962:	41 f4       	brne	.+16     	; 0x974 <determine_dirns_ghost_can_move_in+0x5e>
-			// we're in the ghost home and can move to an empty cell in the ghost home
-			return_value |= (1 << dirn);
      964:	c6 01       	movw	r24, r12
      966:	0c 2e       	mov	r0, r28
      968:	02 c0       	rjmp	.+4      	; 0x96e <determine_dirns_ghost_can_move_in+0x58>
@@ -1530,21 +1275,9 @@ static int8_t determine_dirns_ghost_can_move_in(uint8_t x, uint8_t y) {
      970:	e2 f7       	brpl	.-8      	; 0x96a <determine_dirns_ghost_can_move_in+0x54>
      972:	18 2b       	or	r17, r24
      974:	21 96       	adiw	r28, 0x01	; 1
-// If we're in the ghost home we can move to another cell in the ghost home.
-// If we're outside the ghost home we can't move into it.
-static int8_t determine_dirns_ghost_can_move_in(uint8_t x, uint8_t y) {
-	int8_t return_value = 0;
-	int8_t posn_is_in_ghost_home = is_ghost_home(x,y);
-	for(int8_t dirn = DIRN_LEFT; dirn <= DIRN_DOWN; dirn++) {
      976:	c4 30       	cpi	r28, 0x04	; 4
      978:	d1 05       	cpc	r29, r1
      97a:	01 f7       	brne	.-64     	; 0x93c <determine_dirns_ghost_can_move_in+0x26>
-			// we're in the ghost home and can move to an empty cell in the ghost home
-			return_value |= (1 << dirn);
-		} 
-	}
-	return return_value;
-}
      97c:	81 2f       	mov	r24, r17
      97e:	df 91       	pop	r29
      980:	cf 91       	pop	r28
@@ -1557,22 +1290,14 @@ static int8_t determine_dirns_ghost_can_move_in(uint8_t x, uint8_t y) {
      98e:	08 95       	ret
 
 00000990 <draw_pacman_at>:
-
-// We draw the pac-man at the given location. The character used
-// to draw the pac-man is based on the direction it is currently
-// facing.
-static void draw_pacman_at(uint8_t x, uint8_t y) {
-	move_cursor(x+1,y+1);
      990:	70 e0       	ldi	r23, 0x00	; 0
      992:	6f 5f       	subi	r22, 0xFF	; 255
      994:	7f 4f       	sbci	r23, 0xFF	; 255
      996:	90 e0       	ldi	r25, 0x00	; 0
      998:	01 96       	adiw	r24, 0x01	; 1
      99a:	0e 94 b8 0e 	call	0x1d70	; 0x1d70 <move_cursor>
-	set_display_attribute(PACMAN_COLOUR);
      99e:	81 e2       	ldi	r24, 0x21	; 33
      9a0:	0e 94 db 0e 	call	0x1db6	; 0x1db6 <set_display_attribute>
-	printf("%s", pacman_characters[pacman_direction]);
      9a4:	e0 91 b7 01 	lds	r30, 0x01B7	; 0x8001b7 <pacman_direction>
      9a8:	f0 e0       	ldi	r31, 0x00	; 0
      9aa:	ee 0f       	add	r30, r30
@@ -1588,9 +1313,7 @@ static void draw_pacman_at(uint8_t x, uint8_t y) {
      9be:	9f 93       	push	r25
      9c0:	8f 93       	push	r24
      9c2:	0e 94 63 10 	call	0x20c6	; 0x20c6 <printf>
-	normal_display_mode();
      9c6:	0e 94 c9 0e 	call	0x1d92	; 0x1d92 <normal_display_mode>
-}
      9ca:	0f 90       	pop	r0
      9cc:	0f 90       	pop	r0
      9ce:	0f 90       	pop	r0
@@ -1598,17 +1321,12 @@ static void draw_pacman_at(uint8_t x, uint8_t y) {
      9d2:	08 95       	ret
 
 000009d4 <draw_ghost_at>:
-
-// ghostnum is assumed to be in the range 0..NUM_GHOSTS-1
-// x and y values are assumed to be valid
-static void draw_ghost_at(uint8_t ghostnum, uint8_t x, uint8_t y) {
      9d4:	0f 93       	push	r16
      9d6:	1f 93       	push	r17
      9d8:	cf 93       	push	r28
      9da:	df 93       	push	r29
      9dc:	18 2f       	mov	r17, r24
      9de:	06 2f       	mov	r16, r22
-	move_cursor(x+1,y+1);
      9e0:	c4 2f       	mov	r28, r20
      9e2:	d0 e0       	ldi	r29, 0x00	; 0
      9e4:	86 2f       	mov	r24, r22
@@ -1618,32 +1336,18 @@ static void draw_ghost_at(uint8_t ghostnum, uint8_t x, uint8_t y) {
      9ec:	7f 4f       	sbci	r23, 0xFF	; 255
      9ee:	01 96       	adiw	r24, 0x01	; 1
      9f0:	0e 94 b8 0e 	call	0x1d70	; 0x1d70 <move_cursor>
-	// change the background colour to the colour of the given ghost
-	set_display_attribute(ghost_colours[ghostnum]);
      9f4:	e1 2f       	mov	r30, r17
      9f6:	f0 e0       	ldi	r31, 0x00	; 0
      9f8:	e9 56       	subi	r30, 0x69	; 105
      9fa:	fe 4f       	sbci	r31, 0xFE	; 254
      9fc:	80 81       	ld	r24, Z
      9fe:	0e 94 db 0e 	call	0x1db6	; 0x1db6 <set_display_attribute>
-
-// is_pacdot_at() returns true (1) if there is a pacdot at the given
-// game location, 0 otherwise
-static int8_t is_pacdot_at (uint8_t x, uint8_t y) {
-	// Get the details for the row
-	uint32_t dots_on_row = pacdots[y];
      a02:	cc 0f       	add	r28, r28
      a04:	dd 1f       	adc	r29, r29
      a06:	cc 0f       	add	r28, r28
      a08:	dd 1f       	adc	r29, r29
      a0a:	c4 54       	subi	r28, 0x44	; 68
      a0c:	de 4f       	sbci	r29, 0xFE	; 254
-	move_cursor(x+1,y+1);
-	// change the background colour to the colour of the given ghost
-	set_display_attribute(ghost_colours[ghostnum]);
-	// If there is a pac-dot at this location we output a "." otherwise
-	// we output a space (which will be shown as a block in reverse video)
-	if(is_pacdot_at(x,y)) {
      a0e:	88 81       	ld	r24, Y
      a10:	99 81       	ldd	r25, Y+1	; 0x01
      a12:	aa 81       	ldd	r26, Y+2	; 0x02
@@ -1657,22 +1361,14 @@ static int8_t is_pacdot_at (uint8_t x, uint8_t y) {
      a22:	d2 f7       	brpl	.-12     	; 0xa18 <draw_ghost_at+0x44>
      a24:	80 ff       	sbrs	r24, 0
      a26:	05 c0       	rjmp	.+10     	; 0xa32 <draw_ghost_at+0x5e>
-		printf(".");
      a28:	8e e2       	ldi	r24, 0x2E	; 46
      a2a:	90 e0       	ldi	r25, 0x00	; 0
      a2c:	0e 94 9f 10 	call	0x213e	; 0x213e <putchar>
      a30:	04 c0       	rjmp	.+8      	; 0xa3a <draw_ghost_at+0x66>
-	} else {
-		printf(" ");
      a32:	80 e2       	ldi	r24, 0x20	; 32
      a34:	90 e0       	ldi	r25, 0x00	; 0
      a36:	0e 94 9f 10 	call	0x213e	; 0x213e <putchar>
-	}
-	// Return to normal display mode to ensure we don't use this
-	// background colour for any other printing
-	normal_display_mode();
      a3a:	0e 94 c9 0e 	call	0x1d92	; 0x1d92 <normal_display_mode>
-}
      a3e:	df 91       	pop	r29
      a40:	cf 91       	pop	r28
      a42:	1f 91       	pop	r17
@@ -1680,17 +1376,10 @@ static int8_t is_pacdot_at (uint8_t x, uint8_t y) {
      a46:	08 95       	ret
 
 00000a48 <erase_pixel_at>:
-
-// Erase the pixel at the given location - presumably because the 
-// ghost or the pac-man has moved out of this space. If there is 
-// still a pac-dot at this space, we output a dot, otherwise we
-// output a space. It is assumed that we are in normal video mode.
-static void erase_pixel_at(uint8_t x, uint8_t y) {
      a48:	1f 93       	push	r17
      a4a:	cf 93       	push	r28
      a4c:	df 93       	push	r29
      a4e:	18 2f       	mov	r17, r24
-	move_cursor(x+1, y+1);
      a50:	c6 2f       	mov	r28, r22
      a52:	d0 e0       	ldi	r29, 0x00	; 0
      a54:	90 e0       	ldi	r25, 0x00	; 0
@@ -1699,24 +1388,12 @@ static void erase_pixel_at(uint8_t x, uint8_t y) {
      a5a:	7f 4f       	sbci	r23, 0xFF	; 255
      a5c:	01 96       	adiw	r24, 0x01	; 1
      a5e:	0e 94 b8 0e 	call	0x1d70	; 0x1d70 <move_cursor>
-
-// is_pacdot_at() returns true (1) if there is a pacdot at the given
-// game location, 0 otherwise
-static int8_t is_pacdot_at (uint8_t x, uint8_t y) {
-	// Get the details for the row
-	uint32_t dots_on_row = pacdots[y];
      a62:	cc 0f       	add	r28, r28
      a64:	dd 1f       	adc	r29, r29
      a66:	cc 0f       	add	r28, r28
      a68:	dd 1f       	adc	r29, r29
      a6a:	c4 54       	subi	r28, 0x44	; 68
      a6c:	de 4f       	sbci	r29, 0xFE	; 254
-// ghost or the pac-man has moved out of this space. If there is 
-// still a pac-dot at this space, we output a dot, otherwise we
-// output a space. It is assumed that we are in normal video mode.
-static void erase_pixel_at(uint8_t x, uint8_t y) {
-	move_cursor(x+1, y+1);
-	if(is_pacdot_at(x,y)) {
      a6e:	88 81       	ld	r24, Y
      a70:	99 81       	ldd	r25, Y+1	; 0x01
      a72:	aa 81       	ldd	r26, Y+2	; 0x02
@@ -1730,18 +1407,13 @@ static void erase_pixel_at(uint8_t x, uint8_t y) {
      a82:	d2 f7       	brpl	.-12     	; 0xa78 <erase_pixel_at+0x30>
      a84:	80 ff       	sbrs	r24, 0
      a86:	05 c0       	rjmp	.+10     	; 0xa92 <erase_pixel_at+0x4a>
-		printf(".");
      a88:	8e e2       	ldi	r24, 0x2E	; 46
      a8a:	90 e0       	ldi	r25, 0x00	; 0
      a8c:	0e 94 9f 10 	call	0x213e	; 0x213e <putchar>
      a90:	04 c0       	rjmp	.+8      	; 0xa9a <erase_pixel_at+0x52>
- 	} else {
-		printf(" ");
      a92:	80 e2       	ldi	r24, 0x20	; 32
      a94:	90 e0       	ldi	r25, 0x00	; 0
      a96:	0e 94 9f 10 	call	0x213e	; 0x213e <putchar>
-	 }
-}
      a9a:	df 91       	pop	r29
      a9c:	cf 91       	pop	r28
      a9e:	1f 91       	pop	r17
@@ -4187,8 +3859,8 @@ void play_game(void) {
 		serial_input = -1;
     17d8:	80 2f       	mov	r24, r16
     17da:	4b cf       	rjmp	.-362    	; 0x1672 <play_game+0xc0>
-		
-		
+			ghost_last_move_time3 = current_time; 
+		}
 		
 	}
 	// We get here if the game is over.

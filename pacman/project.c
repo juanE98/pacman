@@ -235,9 +235,6 @@ void play_game(void) {
 			ghost_last_move_time3 = current_time; 
 		}
 		
-		
-		
-		
 	}
 	// We get here if the game is over.
 }
