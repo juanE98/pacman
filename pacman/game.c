@@ -190,7 +190,22 @@ static void eat_pacdot(void) {
 	uint32_t maskval = 1UL << pacman_x; 
 	pacdots[pacman_y] &= ~(maskval); 
 	num_pacdots--;
-	move_cursor(55, 7);
+	add_to_score(10);
+	
+	move_cursor (55, 8); 
+	printf("%13s", "Score: \n"); 
+	move_cursor(55,9); 
+	printf("%11lu\n", get_score());
+	
+	save_highscore();  
+	
+	move_cursor(55, 10) ;
+	printf("%s", "High Score:\n");
+	
+	move_cursor(55,11); 
+	printf("%11d", get_highscore() );
+	
+	move_cursor(50, 15);
 	printf(("Pacdots Remaining: %d"), num_pacdots);
 	
 }

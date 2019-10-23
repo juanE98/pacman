@@ -99,6 +99,7 @@ void new_game(void) {
 	// Initialise the score
 	init_score();
 	
+	
 	// Clear a button push or serial input if any are waiting
 	// (The cast to void means the return value is ignored.)
 	(void)button_pushed();
@@ -109,6 +110,10 @@ void play_game(void) {
 	uint32_t current_time;
 	uint32_t pacman_last_move_time;
 	uint32_t ghost_last_move_time;
+	uint32_t ghost_last_move_time1; 
+	uint32_t ghost_last_move_time2; 
+	uint32_t ghost_last_move_time3; 
+	
 	int8_t button;
 	char serial_input, escape_sequence_char;
 	uint8_t characters_into_escape_sequence = 0;
@@ -118,6 +123,10 @@ void play_game(void) {
 	current_time = get_current_time();
 	pacman_last_move_time = current_time;
 	ghost_last_move_time = current_time;
+	ghost_last_move_time1 = current_time; 
+	ghost_last_move_time2 = current_time; 
+	ghost_last_move_time3 = current_time;
+	 
 	
 	// We play the game until it's over
 	while(!is_game_over()) {
@@ -183,6 +192,11 @@ void play_game(void) {
 			// Unimplemented feature - pause/unpause the game until 'p' or 'P' is
 			// pressed again
 		} 
+		else if (button == 'n' || button == 'N'){
+			//New Game		
+			
+		}
+		
 		// else - invalid input or we're part way through an escape sequence -
 		// do nothing
 		
@@ -201,15 +215,28 @@ void play_game(void) {
 				pacman_last_move_time = ghost_last_move_time = get_current_time();
 			}
 		}
-		if(!is_game_over() && current_time >= ghost_last_move_time + 500) {
+		if(!is_game_over() && current_time >= ghost_last_move_time + 420) {
 			// 500ms (0.5 second) has passed since the last time we moved the
 			// ghosts - move them
 			move_ghost(0);
-			move_ghost(1);
-			move_ghost(2);
-			move_ghost(3);
 			ghost_last_move_time = current_time;
 		}
+		if (!is_game_over() && current_time >= ghost_last_move_time1 + 450){
+			move_ghost(1); 
+			ghost_last_move_time1 = current_time; 
+		}
+		if (!is_game_over() && current_time >= ghost_last_move_time2 + 500){
+			move_ghost(2); 
+			ghost_last_move_time2 = current_time; 
+		}
+		if (!is_game_over() && current_time >= ghost_last_move_time3 + 570){
+			move_ghost(3); 
+			ghost_last_move_time3 = current_time; 
+		}
+		
+		
+		
+		
 	}
 	// We get here if the game is over.
 }
@@ -240,3 +267,4 @@ void handle_game_over(void) {
 	}
 	
 }
+
