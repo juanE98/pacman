@@ -98,7 +98,7 @@ void new_game(void) {
 	
 	// Initialise the score
 	init_score();
-	init_score();
+	
 	
 	
 	// Clear a button push or serial input if any are waiting
@@ -193,10 +193,9 @@ void play_game(void) {
 			// Unimplemented feature - pause/unpause the game until 'p' or 'P' is
 			// pressed again
 		} 
-		else if (button == 'n' || button == 'N'){
+		else if (serial_input == 'n' || serial_input == 'N'){
 			//New Game		
-			new_game(); 
-			
+			new_game();
 		}
 		
 		// else - invalid input or we're part way through an escape sequence -
