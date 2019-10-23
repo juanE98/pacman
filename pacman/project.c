@@ -98,6 +98,7 @@ void new_game(void) {
 	
 	// Initialise the score
 	init_score();
+	init_score();
 	
 	
 	// Clear a button push or serial input if any are waiting
@@ -194,6 +195,7 @@ void play_game(void) {
 		} 
 		else if (button == 'n' || button == 'N'){
 			//New Game		
+			new_game(); 
 			
 		}
 		

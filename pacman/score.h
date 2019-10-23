@@ -10,8 +10,11 @@
 #include <stdint.h>
 
 void init_score(void);
+
+
 void add_to_score(uint16_t value);
 uint32_t get_score(void);
-void save_highscore(void); 
+uint32_t get_highscore(void); 
+void set_highscore(uint32_t value); 
 
 #endif /* SCORE_H_ */

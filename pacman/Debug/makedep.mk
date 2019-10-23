@@ -6,6 +6,8 @@ buttons.c
 
 game.c
 
+joystick.c
+
 ledmatrix.c
 
 project.c

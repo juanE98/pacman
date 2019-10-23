@@ -196,14 +196,16 @@ static void eat_pacdot(void) {
 	printf("%13s", "Score: \n"); 
 	move_cursor(55,9); 
 	printf("%11lu\n", get_score());
-	
-	save_highscore();  
+
+	if (get_score() > get_highscore()) {
+		set_highscore(get_score()) ; 
+	}
 	
 	move_cursor(55, 10) ;
 	printf("%s", "High Score:\n");
 	
 	move_cursor(55,11); 
-	printf("%11d", get_highscore() );
+	printf("%11lu", get_highscore() );
 	
 	move_cursor(50, 15);
 	printf(("Pacdots Remaining: %d"), num_pacdots);
