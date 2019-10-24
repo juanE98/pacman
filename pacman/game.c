@@ -238,8 +238,7 @@ static void eat_pacdot(void) {
 	move_cursor(55, 15);
 	printf(("Pacdots Remaining: %11d"), num_pacdots);
 	
-	move_cursor(55, 3);
-	printf(("Lives Remaining: %11d"), lives); 
+	 
 	
 }
 
@@ -644,6 +643,7 @@ int8_t move_pacman(void) {
 	 }
 
 	if(cell_contents >= 0) {
+		
 		// We've encountered a ghost - draw both at the location
 		// Set the background colour to that of the ghost
 		// before we print out the pac-man
@@ -652,7 +652,6 @@ int8_t move_pacman(void) {
 		draw_pacman_at(pacman_x, pacman_y);
 		// Game is NOT YET over 
 		
-
 	} else {
 		if(cell_contents == CELL_CONTAINS_PACDOT) {
 			eat_pacdot();
@@ -717,7 +716,7 @@ void move_ghost(int8_t ghostnum) {
 	// Check if the pac-man is at this ghost location. 
 	if(is_pacman_at(ghost_x[ghostnum], ghost_y[ghostnum])) {
 		// Ghost has just moved into the pac-man. Ghost will return back to HOME. 
-		
+		lives--;
 		draw_ghost_at(ghostnum, GHOST_HOME_X_LEFT, GHOST_HOME_Y);
 		
 		// We draw the background colour for the
