@@ -87,6 +87,12 @@ static uint32_t pacdots[FIELD_HEIGHT];
 // We also keep a count of the number of pac-dots remaining on the game field
 static uint16_t num_pacdots;
 
+//Lives of pacman (player)
+static uint8_t lives; 
+
+//Initial lives of pacman (player)
+#define MAX_LIVES 3
+
 // Initial pacman location and direction
 #define INIT_PACMAN_X 15
 #define INIT_PACMAN_Y 23
@@ -140,6 +146,28 @@ static uint8_t game_running;
 ///////////////////////////////////////////////////////////
 // Private Functions
 //
+
+uint8_t get_lives (void){
+	return lives; 
+}
+
+void set_lives(int8_t num){
+	lives += num; 
+	//cap max lives 
+	if(lives > MAX_LIVES){
+		lives = MAX_LIVES; 
+		
+	} else if (lives < 0 ){
+		lives  = 0; 
+	}
+	
+}
+void reset_lives(void){
+	lives = MAX_LIVES; 
+}
+
+	
+
 // is_wall_at() returns true (1) if there is a wall at the given 
 // game location, 0 otherwise
 static int8_t is_wall_at (uint8_t x, uint8_t y) {
@@ -207,8 +235,10 @@ static void eat_pacdot(void) {
 	move_cursor(55,11); 
 	printf("%11lu", get_highscore() );
 	
-	move_cursor(50, 15);
-	printf(("Pacdots Remaining: %d"), num_pacdots);
+	move_cursor(55, 15);
+	printf(("Pacdots Remaining: %11d"), num_pacdots);
+	
+	 
 	
 }
 
@@ -613,14 +643,15 @@ int8_t move_pacman(void) {
 	 }
 
 	if(cell_contents >= 0) {
+		
 		// We've encountered a ghost - draw both at the location
 		// Set the background colour to that of the ghost
 		// before we print out the pac-man
 		// Note that the variable cell_contents contains the ghost number
 		set_display_attribute(ghost_colours[cell_contents]);
 		draw_pacman_at(pacman_x, pacman_y);
-		// Game is over 
-		game_running = 0;
+		// Game is NOT YET over 
+		
 	} else {
 		if(cell_contents == CELL_CONTAINS_PACDOT) {
 			eat_pacdot();
@@ -684,14 +715,22 @@ void move_ghost(int8_t ghostnum) {
 	
 	// Check if the pac-man is at this ghost location. 
 	if(is_pacman_at(ghost_x[ghostnum], ghost_y[ghostnum])) {
-		// Ghost has just moved into the pac-man. Game is over
-		game_running = 0;
+		// Ghost has just moved into the pac-man. Ghost will return back to HOME. 
+		lives--;
+		draw_ghost_at(ghostnum, GHOST_HOME_X_LEFT, GHOST_HOME_Y);
+		
 		// We draw the background colour for the
 		// ghost and output the pac-man over the top of it.
-		set_display_attribute(ghost_colours[ghostnum]);
+		//set_display_attribute(ghost_colours[ghostnum]);
 		draw_pacman_at(ghost_x[ghostnum], ghost_y[ghostnum]);
+		//Reset Ghost back to home. 
+		ghost_x[ghostnum] = GHOST_HOME_X_LEFT ; 
+		ghost_y[ghostnum] = GHOST_HOME_Y ; 
+		
 	} else {
+		
 		draw_ghost_at(ghostnum, ghost_x[ghostnum], ghost_y[ghostnum]);
+		
 	}
 	normal_display_mode();
 }
@@ -703,4 +742,5 @@ int8_t is_game_over(void) {
 int8_t is_level_complete(void) {
 	return (num_pacdots == 0);
 }
+
 

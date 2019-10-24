@@ -31,6 +31,8 @@ void new_game(void);
 void play_game(void);
 void handle_level_complete(void);
 void handle_game_over(void);
+void set_disp_lives(uint8_t num); 
+void display_lives(void); 
 
 // ASCII code for Escape character
 #define ESCAPE_CHAR 27
@@ -99,7 +101,8 @@ void new_game(void) {
 	// Initialise the score
 	init_score();
 	
-	
+	//Reset Pacman Lives 
+	set_disp_lives(0); 
 	
 	// Clear a button push or serial input if any are waiting
 	// (The cast to void means the return value is ignored.)
@@ -130,7 +133,7 @@ void play_game(void) {
 	 
 	
 	// We play the game until it's over
-	while(!is_game_over()) {
+	while(!is_game_over() && (get_lives() > 0) ) {
 		// Check for input - which could be a button push or serial input.
 		// Serial input may be part of an escape sequence, e.g. ESC [ D
 		// is a left cursor key press. At most one of the following three
@@ -142,6 +145,10 @@ void play_game(void) {
 		serial_input = -1;
 		escape_sequence_char = -1;
 		button = button_pushed();
+		display_lives(); 
+		
+		
+		
 		
 		if(button == NO_BUTTON_PUSHED) {
 			// No push button was pushed, see if there is any serial input
@@ -235,9 +242,6 @@ void play_game(void) {
 			ghost_last_move_time3 = current_time; 
 		}
 		
-		
-		
-		
 	}
 	// We get here if the game is over.
 }
@@ -269,3 +273,26 @@ void handle_game_over(void) {
 	
 }
 
+//Display lives to LED0,1,2
+void display_lives(void){
+	uint8_t lives = get_lives(); 
+	//set PORTC to Input 
+	PORTC = 0; 
+	if (lives == 1){
+		PORTC = (1<<0); 
+	}else if (lives ==2){
+		PORTC= (1<<0) | (1<<1); 
+	}else if (lives == 3){
+		PORTC = (1<<0)|(1<<1) | (1<<2) ; 
+	}
+}
+
+void set_disp_lives(uint8_t num){
+	if (num==0){
+		reset_lives();
+	}else {
+		set_lives(num);
+	}
+	display_lives(); 
+	
+}
