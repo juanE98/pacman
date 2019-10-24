@@ -12,6 +12,7 @@
 #include <avr/interrupt.h>
 
 #include "timer0.h"
+#include "project.h"
 
 /* Our internal clock tick count - incremented every 
  * millisecond. Will overflow every ~49 days. */
@@ -74,6 +75,8 @@ uint32_t get_current_time(void) {
 }
 
 ISR(TIMER0_COMPA_vect) {
-	/* Increment our clock tick count */
-	clockTicks++;
+	/* Increment our clock tick count if pause status is 0 (i.e. Resumed) */
+	if (is_paused() == 0){
+		clockTicks++;
+	}
 }

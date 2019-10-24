@@ -34,6 +34,9 @@ void handle_game_over(void);
 void set_disp_lives(uint8_t num); 
 void display_lives(void); 
 
+//Pause status (0=resume , 1 = pause ) 
+uint8_t paused = 0; 
+
 // ASCII code for Escape character
 #define ESCAPE_CHAR 27
 
@@ -95,6 +98,8 @@ void splash_screen(void) {
 }
 
 void new_game(void) {
+	
+	paused = 0 ; 
 	// Initialise the game and display
 	initialise_game();
 	
@@ -178,8 +183,26 @@ void play_game(void) {
 				}
 			}
 		}
+		if (serial_input == 'n' || serial_input == 'N'){
+			//New Game
+			new_game();
+		}
+		
+		if(serial_input == 'p' || serial_input == 'P') {
+			// Unimplemented feature - pause/unpause the game until 'p' or 'P' is
+			// pressed again
+			paused = !paused ; 
+			if (paused) {
+				move_cursor(37, 4) ;
+				printf("Pause ||") ;
+				}else {
+				move_cursor(37,4) ;
+				printf("             ");
+			}
+		}
 		
 		// Process the input. 
+		if(!paused){
 		if(button==3 || escape_sequence_char=='A') {
 			// Button 3 pressed OR left cursor key escape sequence completed 
 			// Attempt to move left
@@ -196,14 +219,8 @@ void play_game(void) {
 			// Button 0 pressed OR right cursor key escape sequence completed 
 			// Attempt to move right
 			change_pacman_direction(DIRN_RIGHT);
-		} else if(serial_input == 'p' || serial_input == 'P') {
-			// Unimplemented feature - pause/unpause the game until 'p' or 'P' is
-			// pressed again
-		} 
-		else if (serial_input == 'n' || serial_input == 'N'){
-			//New Game		
-			new_game();
-		}
+		}  
+		
 		
 		// else - invalid input or we're part way through an escape sequence -
 		// do nothing
@@ -245,6 +262,7 @@ void play_game(void) {
 	}
 	// We get here if the game is over.
 }
+		} //if not paused. 
 
 void handle_level_complete(void) {
 	move_cursor(35,10);
@@ -296,4 +314,8 @@ void set_disp_lives(uint8_t num){
 	}
 	display_lives(); 
 	
+}
+
+uint8_t is_paused(void){
+	return paused;
 }

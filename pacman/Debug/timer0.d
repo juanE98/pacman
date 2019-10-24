@@ -11,7 +11,7 @@ timer0.d timer0.o: .././timer0.c \
  d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
  d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
- .././timer0.h
+ .././timer0.h .././project.h
 
 d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -38,3 +38,5 @@ d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
 .././timer0.h:
+
+.././project.h:

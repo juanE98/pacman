@@ -220,22 +220,22 @@ static void eat_pacdot(void) {
 	num_pacdots--;
 	add_to_score(10);
 	
-	move_cursor (55, 8); 
+	move_cursor (37, 8); 
 	printf("%13s", "Score: \n"); 
-	move_cursor(55,9); 
+	move_cursor(37,9); 
 	printf("%11lu\n", get_score());
 
 	if (get_score() > get_highscore()) {
 		set_highscore(get_score()) ; 
 	}
 	
-	move_cursor(55, 10) ;
+	move_cursor(37, 10) ;
 	printf("%s", "High Score:\n");
 	
-	move_cursor(55,11); 
-	printf("%11lu", get_highscore() );
+	move_cursor(37,11); 
+	printf("%11lu\n", get_highscore() );
 	
-	move_cursor(55, 15);
+	move_cursor(37, 13);
 	printf(("Pacdots Remaining: %11d"), num_pacdots);
 	
 	 
@@ -720,8 +720,8 @@ void move_ghost(int8_t ghostnum) {
 		draw_ghost_at(ghostnum, GHOST_HOME_X_LEFT, GHOST_HOME_Y);
 		
 		// We draw the background colour for the
-		// ghost and output the pac-man over the top of it.
-		//set_display_attribute(ghost_colours[ghostnum]);
+		//ghost and output the pac-man over the top of it.
+		set_display_attribute(ghost_colours[ghostnum]);
 		draw_pacman_at(ghost_x[ghostnum], ghost_y[ghostnum]);
 		//Reset Ghost back to home. 
 		ghost_x[ghostnum] = GHOST_HOME_X_LEFT ; 

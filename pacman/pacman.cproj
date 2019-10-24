@@ -153,6 +153,9 @@
     <Compile Include="project.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="project.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="score.c">
       <SubType>compile</SubType>
     </Compile>
