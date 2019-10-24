@@ -84,6 +84,7 @@ static const char init_game_field[FIELD_HEIGHT*FIELD_WIDTH + 1] PROGMEM =
 // This array will be initially set from the data in init_game_field above and
 // will be updated as pacdots are eaten.
 static uint32_t pacdots[FIELD_HEIGHT];
+static uint32_t pellets[FIELD_HEIGHT]; 
 // We also keep a count of the number of pac-dots remaining on the game field
 static uint16_t num_pacdots;
 
@@ -114,6 +115,7 @@ static uint8_t lives;
 #define CELL_IS_WALL (-2)
 #define CELL_CONTAINS_PACMAN (-3)
 #define CELL_CONTAINS_PACDOT (-4)
+#define CELL_CONTAINS_PELLET (-7)
 #define CELL_EMPTY (-5)
 
 // Terminal colours to be used
@@ -196,6 +198,17 @@ static int8_t is_pacdot_at (uint8_t x, uint8_t y) {
 	}
 }
 
+static int8_t is_pellet_at (uint8_t x, uint8_t y) {
+	// Get the details for the row
+	uint32_t dots_on_row = pellets[y];
+	// Extract the value for the column x (which is in bit x)
+	if(dots_on_row & (1UL<< x)) {
+		return 1;
+		} else {
+		return 0;
+	}
+}
+
 // Returns true (1) if the given location is the home of the ghosts
 // (this includes the entry to the home of the ghosts)
 static int8_t is_ghost_home(uint8_t x, uint8_t y) {
@@ -242,6 +255,24 @@ static void eat_pacdot(void) {
 	printf(("Lives: %5d"), get_lives());
 	
 }
+static void eat_pellet(void){
+	uint32_t maskval = 1UL << pacman_x;
+	pellets[pacman_y] &= ~(maskval);
+	add_to_score(50);
+	move_cursor (37, 8);
+	printf("%13s", "Score: \n");
+	move_cursor(37,9);
+	printf("%11lu\n", get_score());
+	if (get_score() > get_highscore()) {
+		set_highscore(get_score()) ;
+	}
+	move_cursor(37, 10) ;
+	printf("%s", "High Score:\n");
+	move_cursor(37,11);
+	printf("%11lu\n", get_highscore() );
+	
+}
+
 
 // what_is_at(x,y) returns
 //		CELL_EMPTY, CELL_CONTAINS_PACDOT, CELL_CONTAINS_PACMAN, CELL_IS_WALL,
@@ -259,7 +290,10 @@ static int8_t what_is_at(uint8_t x, uint8_t y) {
 	}
 	if (is_pacdot_at(x,y)) {
 		return CELL_CONTAINS_PACDOT;
-	} else if (is_wall_at(x,y)) {
+	}else if(is_pellet_at(x,y)){
+		return CELL_CONTAINS_PELLET; 
+	}
+	 else if (is_wall_at(x,y)) {
 		return CELL_IS_WALL;
 	} else if(is_ghost_home(x,y)) {
 		return CELL_IS_GHOST_HOME;
@@ -514,7 +548,7 @@ static void draw_initial_game_field(void) {
 				case 'v':	printf("%s", LINE_HORIZONTAL_AND_DOWN); break;
 				case '+':	printf("%s", LINE_VERTICAL_AND_HORIZONTAL); break;
 				case ' ':	printf(" "); break;
-				case 'P':	printf("."); break;	// power-pellet initially just implemented as a pac-dot
+				case 'P':	printf("P"); break;	// power-pellet initially just implemented as a pac-dot
 				case '.':	printf("."); break;	// pac-dot
 				default:	printf("x"); break;	// shouldn't happen but we show an x in case it does
 			}
@@ -529,11 +563,14 @@ static void initialise_pacdots(void) {
 	uint16_t wall_array_index = 0;  // row_number * 31 + column_number, i.e. 31*x+y
 	for(uint8_t y = 0; y < FIELD_HEIGHT; y++) {
 		pacdots[y] = 0;
+		pellets[y] = 0; 
 		for(uint8_t x = 0; x < FIELD_WIDTH; x++) {
 			char wall_character = pgm_read_byte(&init_game_field[wall_array_index]);
-			if(wall_character == '.' || wall_character == 'P') {
+			if(wall_character == '.' ) {
 				pacdots[y] |= (1UL<<x);
 				num_pacdots++;
+			}else if (wall_character =='P'){
+				pellets[y] |= (1UL<<x); 
 			}
 			wall_array_index++;
 		}
@@ -548,7 +585,10 @@ static void erase_pixel_at(uint8_t x, uint8_t y) {
 	move_cursor(x+1, y+1);
 	if(is_pacdot_at(x,y)) {
 		printf(".");
- 	} else {
+ 	} else if (is_pellet_at(x,y)){
+		printf("P"); 
+	 }
+	 else {
 		printf(" ");
 	 }
 }
@@ -573,7 +613,10 @@ static void draw_ghost_at(uint8_t ghostnum, uint8_t x, uint8_t y) {
 	// we output a space (which will be shown as a block in reverse video)
 	if(is_pacdot_at(x,y)) {
 		printf(".");
-	} else {
+	} else if (is_pellet_at(x,y)){
+		printf("P"); 
+	}
+	else {
 		printf(" ");
 	}
 	// Return to normal display mode to ensure we don't use this
@@ -664,7 +707,8 @@ int8_t move_pacman(void) {
 	} else {
 		if(cell_contents == CELL_CONTAINS_PACDOT) {
 			eat_pacdot();
-			
+		} else if (cell_contents == CELL_CONTAINS_PELLET) {
+			eat_pellet(); 
 		}
 		draw_pacman_at(pacman_x, pacman_y);
 	}
