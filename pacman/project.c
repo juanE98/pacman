@@ -14,11 +14,13 @@
 #include "ledmatrix.h"
 #include "scrolling_char_display.h"
 #include "buttons.h"
+#include "joystick.h"
 #include "serialio.h"
 #include "terminalio.h"
 #include "score.h"
 #include "timer0.h"
 #include "game.h"
+
 
 #define F_CPU 8000000L
 #include <util/delay.h>
@@ -59,6 +61,7 @@ int main(void) {
 
 void initialise_hardware(void) {
 	ledmatrix_setup();
+	initialise_joystick() ; 
 	init_button_interrupts();
 	// Setup serial port for 19200 baud communication with no echo
 	// of incoming characters
@@ -123,7 +126,7 @@ void play_game(void) {
 	uint32_t ghost_last_move_time2; 
 	uint32_t ghost_last_move_time3; 
 	
-	int8_t button;
+	int8_t button , joystick ; 
 	char serial_input, escape_sequence_char;
 	uint8_t characters_into_escape_sequence = 0;
 	
@@ -203,19 +206,20 @@ void play_game(void) {
 		
 		// Process the input. 
 		if(!paused){
-		if(button==3 || escape_sequence_char=='A') {
+			joystick = joystick_dir(); //Get joystick direction. 
+		if(button==3 || escape_sequence_char=='A' || joystick == 3) {
 			// Button 3 pressed OR left cursor key escape sequence completed 
 			// Attempt to move left
 			change_pacman_direction(DIRN_LEFT);
-		} else if(button==2 || escape_sequence_char=='W') {
+		} else if(button==2 || escape_sequence_char=='W'|| joystick == 1) {
 			// Button 2 pressed or up cursor key escape sequence completed
 			// Attempt to move up 
 			change_pacman_direction(DIRN_UP);
-		} else if(button==1 || escape_sequence_char=='S') {
+		} else if(button==1 || escape_sequence_char=='S' || joystick == 2) {
 			// Button 1 pressed OR down cursor key escape sequence completed
 			// Attempt to move down
 			change_pacman_direction(DIRN_DOWN); 
-		} else if(button==0 || escape_sequence_char=='D') {
+		} else if(button==0 || escape_sequence_char=='D'|| joystick == 4 ) {
 			// Button 0 pressed OR right cursor key escape sequence completed 
 			// Attempt to move right
 			change_pacman_direction(DIRN_RIGHT);

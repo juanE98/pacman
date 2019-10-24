@@ -9,6 +9,8 @@
 #ifndef INCFILE1_H_
 #define INCFILE1_H_
 
+#include <stdint.h>
+
 // ADC Setup 
 void init_joystick(void); 
 
@@ -18,4 +20,4 @@ uint8_t dir_joystick(void);
 
 
 
-#endif /* INCFILE1_H_ */
+#endif /* JOYSTICK_H_ */

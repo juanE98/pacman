@@ -16,8 +16,8 @@ project.d project.o: .././project.c \
  d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdio.h \
  d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdarg.h \
  .././ledmatrix.h .././pixel_colour.h .././scrolling_char_display.h \
- .././buttons.h .././serialio.h .././terminalio.h .././score.h \
- .././timer0.h .././game.h \
+ .././buttons.h .././joystick.h .././serialio.h .././terminalio.h \
+ .././score.h .././timer0.h .././game.h \
  d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h
@@ -61,6 +61,8 @@ d:\new\ folder\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\s
 .././scrolling_char_display.h:
 
 .././buttons.h:
+
+.././joystick.h:
 
 .././serialio.h:
 
