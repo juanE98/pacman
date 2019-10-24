@@ -133,7 +133,7 @@ void play_game(void) {
 	 
 	
 	// We play the game until it's over
-	while(!is_game_over()) {
+	while(!is_game_over() && (get_lives() > 0) ) {
 		// Check for input - which could be a button push or serial input.
 		// Serial input may be part of an escape sequence, e.g. ESC [ D
 		// is a left cursor key press. At most one of the following three
@@ -145,6 +145,10 @@ void play_game(void) {
 		serial_input = -1;
 		escape_sequence_char = -1;
 		button = button_pushed();
+		display_lives(); 
+		
+		
+		
 		
 		if(button == NO_BUTTON_PUSHED) {
 			// No push button was pushed, see if there is any serial input
@@ -272,6 +276,7 @@ void handle_game_over(void) {
 //Display lives to LED0,1,2
 void display_lives(void){
 	uint8_t lives = get_lives(); 
+	//set PORTC to Input 
 	PORTC = 0; 
 	if (lives == 1){
 		PORTC = (1<<0); 
