@@ -263,6 +263,7 @@ void handle_level_complete(void) {
 }
 
 void handle_game_over(void) {
+	display_lives(); 
 	move_cursor(35,14);
 	printf_P(PSTR("GAME OVER"));
 	move_cursor(35,16);
