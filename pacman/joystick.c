@@ -55,7 +55,8 @@ uint8_t joystick_dir(void){
 		direction = 2; 
 	}else {
 		if (prev_dir == 3){
-			direction = (adc_x <386 ? 3:1) ; 
+			// if adc_x < 386 then direction = direction, otherwise direction = middle
+			direction = (adc_x <386 ? 3:-1) ; 
 		}
 		else if(prev_dir == 1){
 			direction = (adc_y > 641 ? 1:-1); 
@@ -79,5 +80,5 @@ uint8_t joystick_dir(void){
 	}
 	return direction ; 
 
-	
+
 }

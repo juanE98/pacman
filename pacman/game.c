@@ -238,7 +238,8 @@ static void eat_pacdot(void) {
 	move_cursor(37, 13);
 	printf(("Pacdots Remaining: %11d"), num_pacdots);
 	
-	 
+	move_cursor(37, 5 );
+	printf(("Lives: %5d"), get_lives());
 	
 }
 
@@ -650,7 +651,13 @@ int8_t move_pacman(void) {
 		// Note that the variable cell_contents contains the ghost number
 		set_display_attribute(ghost_colours[cell_contents]);
 		draw_pacman_at(pacman_x, pacman_y);
-		// Game is NOT YET over 
+		
+		//Reset Ghost back to home.
+		ghost_x[cell_contents] = GHOST_HOME_X_LEFT ;
+		ghost_y[cell_contents] = GHOST_HOME_Y ;
+		//Draw ghost back home.
+		draw_ghost_at(cell_contents, GHOST_HOME_X_LEFT, GHOST_HOME_Y);
+		
 		
 	} else {
 		if(cell_contents == CELL_CONTAINS_PACDOT) {
@@ -715,9 +722,10 @@ void move_ghost(int8_t ghostnum) {
 	
 	// Check if the pac-man is at this ghost location. 
 	if(is_pacman_at(ghost_x[ghostnum], ghost_y[ghostnum])) {
-		// Ghost has just moved into the pac-man. Ghost will return back to HOME. 
+		// Ghost has just moved into the pac-man. Lose 1 life.
 		lives--;
-		draw_ghost_at(ghostnum, GHOST_HOME_X_LEFT, GHOST_HOME_Y);
+		move_cursor(37, 5 );
+		printf(("Lives: %5d"), get_lives());
 		
 		// We draw the background colour for the
 		//ghost and output the pac-man over the top of it.
@@ -726,6 +734,8 @@ void move_ghost(int8_t ghostnum) {
 		//Reset Ghost back to home. 
 		ghost_x[ghostnum] = GHOST_HOME_X_LEFT ; 
 		ghost_y[ghostnum] = GHOST_HOME_Y ; 
+		//Draw ghost back home.
+		draw_ghost_at(ghostnum, GHOST_HOME_X_LEFT, GHOST_HOME_Y);
 		
 	} else {
 		
