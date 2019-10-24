@@ -651,7 +651,9 @@ int8_t move_pacman(void) {
 		// Note that the variable cell_contents contains the ghost number
 		set_display_attribute(ghost_colours[cell_contents]);
 		draw_pacman_at(pacman_x, pacman_y);
-		
+		lives--; 
+		move_cursor(37, 5 );
+		printf(("Lives: %5d"), get_lives());
 		//Reset Ghost back to home.
 		ghost_x[cell_contents] = GHOST_HOME_X_LEFT ;
 		ghost_y[cell_contents] = GHOST_HOME_Y ;
