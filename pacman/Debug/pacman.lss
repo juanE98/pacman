@@ -19,15 +19,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   7 .debug_abbrev 000015b4  00000000  00000000  00007054  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000236f  00000000  00000000  00008608  2**0
+  8 .debug_line   00002267  00000000  00000000  00008608  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000c14  00000000  00000000  0000a978  2**2
+  9 .debug_frame  00000c14  00000000  00000000  0000a870  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00001141  00000000  00000000  0000b58c  2**0
+ 10 .debug_str    00001141  00000000  00000000  0000b484  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00002ec1  00000000  00000000  0000c6cd  2**0
+ 11 .debug_loc    00002ec1  00000000  00000000  0000c5c5  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000440  00000000  00000000  0000f58e  2**0
+ 12 .debug_ranges 00000440  00000000  00000000  0000f486  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -3938,10 +3938,10 @@ void initialise_joystick(void){
 	//Setup ADC
 	ADMUX = (1 <<REFS0); 
     1a0c:	80 e4       	ldi	r24, 0x40	; 64
-    1a0e:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7e007c>
+    1a0e:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__DATA_REGION_ORIGIN__+0x1c>
 	ADCSRA= (1<<ADEN) | (1<<ADPS2) | (1<<ADPS1) ; 
     1a12:	86 e8       	ldi	r24, 0x86	; 134
-    1a14:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7e007a>
+    1a14:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__DATA_REGION_ORIGIN__+0x1a>
     1a18:	08 95       	ret
 
 00001a1a <joystick_dir>:
@@ -3978,8 +3978,8 @@ static void get_ADCval(void){
 		; //wait conversion. 
 	}
 	adc_x = ADC;  //read value 
-    1a38:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
-    1a3c:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
+    1a38:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__DATA_REGION_ORIGIN__+0x18>
+    1a3c:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__DATA_REGION_ORIGIN__+0x19>
     1a40:	90 93 de 02 	sts	0x02DE, r25	; 0x8002de <adc_x+0x1>
     1a44:	80 93 dd 02 	sts	0x02DD, r24	; 0x8002dd <adc_x>
 	
@@ -4005,8 +4005,8 @@ static void get_ADCval(void){
 		; //wait
 	}
 	adc_y = ADC;  //read value 
-    1a66:	40 91 78 00 	lds	r20, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7e0078>
-    1a6a:	50 91 79 00 	lds	r21, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
+    1a66:	40 91 78 00 	lds	r20, 0x0078	; 0x800078 <__DATA_REGION_ORIGIN__+0x18>
+    1a6a:	50 91 79 00 	lds	r21, 0x0079	; 0x800079 <__DATA_REGION_ORIGIN__+0x19>
     1a6e:	50 93 dc 02 	sts	0x02DC, r21	; 0x8002dc <adc_y+0x1>
     1a72:	40 93 db 02 	sts	0x02DB, r20	; 0x8002db <adc_y>
 uint8_t joystick_dir(void){
@@ -5502,8 +5502,8 @@ void init_serial_stdio(long baudrate, int8_t echo) {
     239e:	87 95       	ror	r24
     23a0:	01 97       	sbiw	r24, 0x01	; 1
 	UBRR0 = ubrr;
-    23a2:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
-    23a6:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
+    23a2:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__DATA_REGION_ORIGIN__+0x65>
+    23a6:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__DATA_REGION_ORIGIN__+0x64>
 	 * the UDR empty interrupt here (we wait until we've got a
 	 * character to transmit).
 	 * NOTE: Interrupts must be enabled globally for this
@@ -5636,7 +5636,7 @@ ISR(USART0_UDRE_vect)
 		
 		/* Output the character via the UART */
 		UDR0 = c;
-    2442:	90 93 c6 00 	sts	0x00C6, r25	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+    2442:	90 93 c6 00 	sts	0x00C6, r25	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
     2446:	05 c0       	rjmp	.+10     	; 0x2452 <__vector_21+0x70>
 		 * Register Empty interrupt because otherwise it 
 		 * will trigger again immediately this ISR exits. 
@@ -5690,7 +5690,7 @@ ISR(USART0_RX_vect)
 	/* Read the character - we ignore the possibility of overrun. */
 	char c;
 	c = UDR0;
-    248a:	c0 91 c6 00 	lds	r28, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+    248a:	c0 91 c6 00 	lds	r28, 0x00C6	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
 		
 	if(do_echo && bytes_in_out_buffer < OUTPUT_BUFFER_SIZE) {
     248e:	80 91 e7 02 	lds	r24, 0x02E7	; 0x8002e7 <do_echo>
