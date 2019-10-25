@@ -12,10 +12,10 @@
 #include <stdint.h>
 
 // ADC Setup 
-void init_joystick(void); 
+void initialise_joystic(void); 
 
 //Current joystick direction 
-uint8_t dir_joystick(void); 
+uint8_t joystick_dir(void); 
 
 
 

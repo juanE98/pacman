@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 000003a0  00000000  00000000  00003198  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00003b4c  00000000  00000000  00003538  2**0
+  6 .debug_info   00003b1c  00000000  00000000  00003538  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000015e2  00000000  00000000  00007084  2**0
+  7 .debug_abbrev 000015b4  00000000  00000000  00007054  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00002360  00000000  00000000  00008666  2**0
+  8 .debug_line   0000236f  00000000  00000000  00008608  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000c14  00000000  00000000  0000a9c8  2**2
+  9 .debug_frame  00000c14  00000000  00000000  0000a978  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00001141  00000000  00000000  0000b5dc  2**0
+ 10 .debug_str    00001141  00000000  00000000  0000b58c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00002ec1  00000000  00000000  0000c71d  2**0
+ 11 .debug_loc    00002ec1  00000000  00000000  0000c6cd  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000440  00000000  00000000  0000f5de  2**0
+ 12 .debug_ranges 00000440  00000000  00000000  0000f58e  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -641,19 +641,19 @@ Disassembly of section .text:
      4f4:	2d 2d       	mov	r18, r13
      4f6:	4a 00       	.word	0x004a	; ????
 
-000004f8 <__c.2326>:
+000004f8 <__c.2324>:
      4f8:	50 72 65 73 73 20 61 20 62 75 74 74 6f 6e 20 74     Press a button t
      508:	6f 20 73 74 61 72 74 20 61 67 61 69 6e 00           o start again.
 
-00000516 <__c.2324>:
+00000516 <__c.2322>:
      516:	47 41 4d 45 20 4f 56 45 52 00                       GAME OVER.
 
-00000520 <__c.2316>:
+00000520 <__c.2314>:
      520:	50 75 73 68 20 61 20 62 75 74 74 6f 6e 20 6f 72     Push a button or
      530:	20 6b 65 79 20 74 6f 20 63 6f 6e 74 69 6e 75 65      key to continue
 	...
 
-00000541 <__c.2314>:
+00000541 <__c.2312>:
      541:	4c 65 76 65 6c 20 63 6f 6d 70 6c 65 74 65 00        Level complete.
 
 00000550 <__c.2283>:
@@ -3563,6 +3563,7 @@ static int8_t is_pacman_at(uint8_t x, uint8_t y) {
     17b8:	6c e0       	ldi	r22, 0x0C	; 12
     17ba:	8c 2f       	mov	r24, r28
     17bc:	0e 94 01 05 	call	0xa02	; 0xa02 <draw_ghost_at>
+		
 		if(ghost_eat==1){
     17c0:	80 91 d8 01 	lds	r24, 0x01D8	; 0x8001d8 <ghost_eat>
     17c4:	90 91 d9 01 	lds	r25, 0x01D9	; 0x8001d9 <ghost_eat+0x1>
@@ -3617,6 +3618,7 @@ static int8_t is_pacman_at(uint8_t x, uint8_t y) {
     1832:	80 e4       	ldi	r24, 0x40	; 64
     1834:	96 e0       	ldi	r25, 0x06	; 6
     1836:	0e 94 37 10 	call	0x206e	; 0x206e <add_to_score>
+			
 		}
 		move_cursor (37, 8);
     183a:	68 e0       	ldi	r22, 0x08	; 8

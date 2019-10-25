@@ -35,6 +35,8 @@ void handle_level_complete(void);
 void handle_game_over(void);
 void set_disp_lives(uint8_t num); 
 void display_lives(void); 
+void initialise_joystick(void) ;
+
 
 //Pause status (0=resume , 1 = pause ) 
 uint8_t paused = 0; 

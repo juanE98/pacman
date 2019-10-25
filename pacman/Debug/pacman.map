@@ -543,13 +543,13 @@ END GROUP
  *(.progmem*)
  .progmem.data.init_game_field
                 0x00000136      0x3c2 game.o
- .progmem.data.__c.2326
-                0x000004f8       0x1e project.o
  .progmem.data.__c.2324
+                0x000004f8       0x1e project.o
+ .progmem.data.__c.2322
                 0x00000516        0xa project.o
- .progmem.data.__c.2316
-                0x00000520       0x21 project.o
  .progmem.data.__c.2314
+                0x00000520       0x21 project.o
+ .progmem.data.__c.2312
                 0x00000541        0xf project.o
  .progmem.data.__c.2283
                 0x00000550       0x19 project.o
@@ -1173,50 +1173,50 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x3b4c
+.debug_info     0x00000000     0x3b1c
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x6cc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
  .debug_info    0x000006cc      0x193 buttons.o
  .debug_info    0x0000085f      0xffd game.o
  .debug_info    0x0000185c      0x151 joystick.o
  .debug_info    0x000019ad      0x530 ledmatrix.o
- .debug_info    0x00001edd      0x9d7 project.o
- .debug_info    0x000028b4      0x146 score.o
- .debug_info    0x000029fa      0x64d scrolling_char_display.o
- .debug_info    0x00003047      0x3e9 serialio.o
- .debug_info    0x00003430       0xc1 spi.o
- .debug_info    0x000034f1      0x532 terminalio.o
- .debug_info    0x00003a23      0x129 timer0.o
+ .debug_info    0x00001edd      0x9a7 project.o
+ .debug_info    0x00002884      0x146 score.o
+ .debug_info    0x000029ca      0x64d scrolling_char_display.o
+ .debug_info    0x00003017      0x3e9 serialio.o
+ .debug_info    0x00003400       0xc1 spi.o
+ .debug_info    0x000034c1      0x532 terminalio.o
+ .debug_info    0x000039f3      0x129 timer0.o
 
-.debug_abbrev   0x00000000     0x15e2
+.debug_abbrev   0x00000000     0x15b4
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x66e C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
  .debug_abbrev  0x0000066e       0xd6 buttons.o
  .debug_abbrev  0x00000744      0x3ec game.o
  .debug_abbrev  0x00000b30       0xc6 joystick.o
  .debug_abbrev  0x00000bf6      0x137 ledmatrix.o
- .debug_abbrev  0x00000d2d      0x2a5 project.o
- .debug_abbrev  0x00000fd2       0xa5 score.o
- .debug_abbrev  0x00001077      0x122 scrolling_char_display.o
- .debug_abbrev  0x00001199      0x230 serialio.o
- .debug_abbrev  0x000013c9       0x7c spi.o
- .debug_abbrev  0x00001445       0xe3 terminalio.o
- .debug_abbrev  0x00001528       0xba timer0.o
+ .debug_abbrev  0x00000d2d      0x277 project.o
+ .debug_abbrev  0x00000fa4       0xa5 score.o
+ .debug_abbrev  0x00001049      0x122 scrolling_char_display.o
+ .debug_abbrev  0x0000116b      0x230 serialio.o
+ .debug_abbrev  0x0000139b       0x7c spi.o
+ .debug_abbrev  0x00001417       0xe3 terminalio.o
+ .debug_abbrev  0x000014fa       0xba timer0.o
 
-.debug_line     0x00000000     0x2360
+.debug_line     0x00000000     0x236f
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x151 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
  .debug_line    0x00000151      0x167 buttons.o
  .debug_line    0x000002b8      0xace game.o
  .debug_line    0x00000d86      0x18d joystick.o
  .debug_line    0x00000f13      0x2ee ledmatrix.o
- .debug_line    0x00001201      0x600 project.o
- .debug_line    0x00001801      0x106 score.o
- .debug_line    0x00001907      0x244 scrolling_char_display.o
- .debug_line    0x00001b4b      0x2b9 serialio.o
- .debug_line    0x00001e04      0x114 spi.o
- .debug_line    0x00001f18      0x31d terminalio.o
- .debug_line    0x00002235      0x12b timer0.o
+ .debug_line    0x00001201      0x60f project.o
+ .debug_line    0x00001810      0x106 score.o
+ .debug_line    0x00001916      0x244 scrolling_char_display.o
+ .debug_line    0x00001b5a      0x2b9 serialio.o
+ .debug_line    0x00001e13      0x114 spi.o
+ .debug_line    0x00001f27      0x31d terminalio.o
+ .debug_line    0x00002244      0x12b timer0.o
 
 .debug_frame    0x00000000      0xc14
  *(.debug_frame)

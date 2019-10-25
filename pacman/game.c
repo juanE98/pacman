@@ -837,6 +837,7 @@ void move_ghost(int8_t ghostnum) {
 		ghost_y[ghostnum] = GHOST_HOME_Y ;
 		//Draw ghost back home.
 		draw_ghost_at(ghostnum, GHOST_HOME_X_LEFT, GHOST_HOME_Y);
+		
 		if(ghost_eat==1){
 			add_to_score(200);
 			ghost_eat++ ;
@@ -848,6 +849,7 @@ void move_ghost(int8_t ghostnum) {
 			ghost_eat++;
 			}else if(ghost_eat==4){
 			add_to_score(1600);
+			
 		}
 		move_cursor (37, 8);
 		printf("%13s", "Score: \n");
