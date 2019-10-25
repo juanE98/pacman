@@ -39,6 +39,8 @@ void display_lives(void);
 //Pause status (0=resume , 1 = pause ) 
 uint8_t paused = 0; 
 
+
+
 // ASCII code for Escape character
 #define ESCAPE_CHAR 27
 

@@ -77,6 +77,8 @@ Discarded input sections
  .bss           0x00000000        0x0 game.o
  .text.set_lives
                 0x00000000       0x18 game.o
+ .text.is_powerup
+                0x00000000        0x6 game.o
  .text          0x00000000        0x0 joystick.o
  .data          0x00000000        0x0 joystick.o
  .bss           0x00000000        0x0 joystick.o
@@ -521,7 +523,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x2c9e
+.text           0x00000000     0x2fa4
  *(.vectors)
  .vectors       0x00000000       0x7c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
                 0x00000000                __vector_default
@@ -747,201 +749,201 @@ END GROUP
                 0x00000eaa        0xc game.o
                 0x00000eaa                initialise_game
  .text.move_pacman
-                0x00000eb6      0x3be game.o
+                0x00000eb6      0x540 game.o
                 0x00000eb6                move_pacman
  .text.change_pacman_direction
-                0x00001274       0x44 game.o
-                0x00001274                change_pacman_direction
+                0x000013f6       0x44 game.o
+                0x000013f6                change_pacman_direction
  .text.move_ghost
-                0x000012b8      0x430 game.o
-                0x000012b8                move_ghost
+                0x0000143a      0x5b4 game.o
+                0x0000143a                move_ghost
  .text.is_game_over
-                0x000016e8        0xc game.o
-                0x000016e8                is_game_over
+                0x000019ee        0xc game.o
+                0x000019ee                is_game_over
  .text.is_level_complete
-                0x000016f4       0x12 game.o
-                0x000016f4                is_level_complete
+                0x000019fa       0x12 game.o
+                0x000019fa                is_level_complete
  .text.initialise_joystick
-                0x00001706        0xe joystick.o
-                0x00001706                initialise_joystick
+                0x00001a0c        0xe joystick.o
+                0x00001a0c                initialise_joystick
  .text.joystick_dir
-                0x00001714      0x14a joystick.o
-                0x00001714                joystick_dir
+                0x00001a1a      0x14a joystick.o
+                0x00001a1a                joystick_dir
  .text.ledmatrix_setup
-                0x0000185e        0x8 ledmatrix.o
-                0x0000185e                ledmatrix_setup
+                0x00001b64        0x8 ledmatrix.o
+                0x00001b64                ledmatrix_setup
  .text.ledmatrix_update_column
-                0x00001866       0x3a ledmatrix.o
-                0x00001866                ledmatrix_update_column
+                0x00001b6c       0x3a ledmatrix.o
+                0x00001b6c                ledmatrix_update_column
  .text.ledmatrix_shift_display_left
-                0x000018a0        0xe ledmatrix.o
-                0x000018a0                ledmatrix_shift_display_left
+                0x00001ba6        0xe ledmatrix.o
+                0x00001ba6                ledmatrix_shift_display_left
  .text.ledmatrix_clear
-                0x000018ae        0x8 ledmatrix.o
-                0x000018ae                ledmatrix_clear
+                0x00001bb4        0x8 ledmatrix.o
+                0x00001bb4                ledmatrix_clear
  .text.initialise_hardware
-                0x000018b6       0x22 project.o
-                0x000018b6                initialise_hardware
+                0x00001bbc       0x22 project.o
+                0x00001bbc                initialise_hardware
  .text.splash_screen
-                0x000018d8       0x92 project.o
-                0x000018d8                splash_screen
+                0x00001bde       0x92 project.o
+                0x00001bde                splash_screen
  .text.handle_level_complete
-                0x0000196a       0x52 project.o
-                0x0000196a                handle_level_complete
+                0x00001c70       0x52 project.o
+                0x00001c70                handle_level_complete
  .text.display_lives
-                0x000019bc       0x22 project.o
-                0x000019bc                display_lives
+                0x00001cc2       0x22 project.o
+                0x00001cc2                display_lives
  .text.handle_game_over
-                0x000019de       0x46 project.o
-                0x000019de                handle_game_over
+                0x00001ce4       0x46 project.o
+                0x00001ce4                handle_game_over
  .text.new_game
-                0x00001a24       0x1e project.o
-                0x00001a24                new_game
+                0x00001d2a       0x1e project.o
+                0x00001d2a                new_game
  .text.play_game
-                0x00001a42      0x2f8 project.o
-                0x00001a42                play_game
- .text.main     0x00001d3a       0x16 project.o
-                0x00001d3a                main
+                0x00001d48      0x2f8 project.o
+                0x00001d48                play_game
+ .text.main     0x00002040       0x16 project.o
+                0x00002040                main
  .text.is_paused
-                0x00001d50        0x6 project.o
-                0x00001d50                is_paused
+                0x00002056        0x6 project.o
+                0x00002056                is_paused
  .text.init_score
-                0x00001d56       0x12 score.o
-                0x00001d56                init_score
+                0x0000205c       0x12 score.o
+                0x0000205c                init_score
  .text.add_to_score
-                0x00001d68       0x2a score.o
-                0x00001d68                add_to_score
+                0x0000206e       0x2a score.o
+                0x0000206e                add_to_score
  .text.get_score
-                0x00001d92       0x12 score.o
-                0x00001d92                get_score
+                0x00002098       0x12 score.o
+                0x00002098                get_score
  .text.set_highscore
-                0x00001da4       0x12 score.o
-                0x00001da4                set_highscore
+                0x000020aa       0x12 score.o
+                0x000020aa                set_highscore
  .text.get_highscore
-                0x00001db6       0x12 score.o
-                0x00001db6                get_highscore
+                0x000020bc       0x12 score.o
+                0x000020bc                get_highscore
  .text.set_scrolling_display_text
-                0x00001dc8       0x1e scrolling_char_display.o
-                0x00001dc8                set_scrolling_display_text
+                0x000020ce       0x1e scrolling_char_display.o
+                0x000020ce                set_scrolling_display_text
  .text.scroll_display
-                0x00001de6      0x184 scrolling_char_display.o
-                0x00001de6                scroll_display
+                0x000020ec      0x184 scrolling_char_display.o
+                0x000020ec                scroll_display
  .text.uart_put_char
-                0x00001f6a       0x70 serialio.o
+                0x00002270       0x70 serialio.o
  .text.uart_get_char
-                0x00001fda       0x5c serialio.o
+                0x000022e0       0x5c serialio.o
  .text.init_serial_stdio
-                0x00002036       0x8e serialio.o
-                0x00002036                init_serial_stdio
+                0x0000233c       0x8e serialio.o
+                0x0000233c                init_serial_stdio
  .text.serial_input_available
-                0x000020c4        0xe serialio.o
-                0x000020c4                serial_input_available
+                0x000023ca        0xe serialio.o
+                0x000023ca                serial_input_available
  .text.clear_serial_input_buffer
-                0x000020d2        0xa serialio.o
-                0x000020d2                clear_serial_input_buffer
+                0x000023d8        0xa serialio.o
+                0x000023d8                clear_serial_input_buffer
  .text.__vector_21
-                0x000020dc       0x84 serialio.o
-                0x000020dc                __vector_21
+                0x000023e2       0x84 serialio.o
+                0x000023e2                __vector_21
  .text.__vector_20
-                0x00002160       0xa6 serialio.o
-                0x00002160                __vector_20
+                0x00002466       0xa6 serialio.o
+                0x00002466                __vector_20
  .text.spi_setup_master
-                0x00002206       0x50 spi.o
-                0x00002206                spi_setup_master
+                0x0000250c       0x50 spi.o
+                0x0000250c                spi_setup_master
  .text.spi_send_byte
-                0x00002256        0xc spi.o
-                0x00002256                spi_send_byte
+                0x0000255c        0xc spi.o
+                0x0000255c                spi_send_byte
  .text.move_cursor
-                0x00002262       0x22 terminalio.o
-                0x00002262                move_cursor
+                0x00002568       0x22 terminalio.o
+                0x00002568                move_cursor
  .text.normal_display_mode
-                0x00002284       0x12 terminalio.o
-                0x00002284                normal_display_mode
+                0x0000258a       0x12 terminalio.o
+                0x0000258a                normal_display_mode
  .text.clear_terminal
-                0x00002296       0x12 terminalio.o
-                0x00002296                clear_terminal
+                0x0000259c       0x12 terminalio.o
+                0x0000259c                clear_terminal
  .text.set_display_attribute
-                0x000022a8       0x1a terminalio.o
-                0x000022a8                set_display_attribute
+                0x000025ae       0x1a terminalio.o
+                0x000025ae                set_display_attribute
  .text.hide_cursor
-                0x000022c2       0x12 terminalio.o
-                0x000022c2                hide_cursor
+                0x000025c8       0x12 terminalio.o
+                0x000025c8                hide_cursor
  .text.init_timer0
-                0x000022d4       0x30 timer0.o
-                0x000022d4                init_timer0
+                0x000025da       0x30 timer0.o
+                0x000025da                init_timer0
  .text.get_current_time
-                0x00002304       0x1c timer0.o
-                0x00002304                get_current_time
+                0x0000260a       0x1c timer0.o
+                0x0000260a                get_current_time
  .text.__vector_16
-                0x00002320       0x72 timer0.o
-                0x00002320                __vector_16
+                0x00002626       0x72 timer0.o
+                0x00002626                __vector_16
  .text.libgcc.div
-                0x00002392       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
-                0x00002392                __divmodsi4
+                0x00002698       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
+                0x00002698                __divmodsi4
  .text.libgcc.div
-                0x000023c0       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
-                0x000023c0                __negsi2
- .text.libgcc   0x000023d0        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x000023d0                __tablejump2__
+                0x000026c6       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
+                0x000026c6                __negsi2
+ .text.libgcc   0x000026d6        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x000026d6                __tablejump2__
  .text.libgcc.div
-                0x000023dc       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x000023dc                __udivmodsi4
+                0x000026e2       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x000026e2                __udivmodsi4
  .text.avr-libc
-                0x00002420      0x144 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(random.o)
-                0x00002420                random_r
-                0x000024b6                random
-                0x00002552                srandom
+                0x00002726      0x144 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(random.o)
+                0x00002726                random_r
+                0x000027bc                random
+                0x00002858                srandom
  .text.avr-libc
-                0x00002564       0x7c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fgetc.o)
-                0x00002564                fgetc
+                0x0000286a       0x7c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fgetc.o)
+                0x0000286a                fgetc
  .text.avr-libc
-                0x000025e0       0x2c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(printf.o)
-                0x000025e0                printf
+                0x000028e6       0x2c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(printf.o)
+                0x000028e6                printf
  .text.avr-libc
-                0x0000260c       0x4c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(printf_p.o)
-                0x0000260c                printf_P
+                0x00002912       0x4c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(printf_p.o)
+                0x00002912                printf_P
  .text.avr-libc
-                0x00002658        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(putchar.o)
-                0x00002658                putchar
+                0x0000295e        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(putchar.o)
+                0x0000295e                putchar
  .text.avr-libc
-                0x00002666       0x60 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(puts.o)
-                0x00002666                puts
+                0x0000296c       0x60 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(puts.o)
+                0x0000296c                puts
  .text.avr-libc
-                0x000026c6      0x3c2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
-                0x000026c6                vfprintf
+                0x000029cc      0x3c2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                0x000029cc                vfprintf
  .text.avr-libc
-                0x00002a88       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
-                0x00002a88                strnlen_P
+                0x00002d8e       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                0x00002d8e                strnlen_P
  .text.avr-libc
-                0x00002a9e       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
-                0x00002a9e                strnlen
+                0x00002da4       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                0x00002da4                strnlen
  .text.avr-libc
-                0x00002ab4       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
-                0x00002ab4                fputc
+                0x00002dba       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
+                0x00002dba                fputc
  .text.avr-libc
-                0x00002b2c       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
-                0x00002b2c                __ultoa_invert
+                0x00002e32       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+                0x00002e32                __ultoa_invert
  .text.libgcc.mul
-                0x00002be8       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
-                0x00002be8                __muluhisi3
+                0x00002eee       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
+                0x00002eee                __muluhisi3
  .text.libgcc.mul
-                0x00002bfe       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_mulshisi3.o)
-                0x00002bfe                __mulshisi3
-                0x00002c04                __mulohisi3
+                0x00002f04       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_mulshisi3.o)
+                0x00002f04                __mulshisi3
+                0x00002f0a                __mulohisi3
  .text.libgcc.prologue
-                0x00002c0e       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
-                0x00002c0e                __prologue_saves__
+                0x00002f14       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
+                0x00002f14                __prologue_saves__
  .text.libgcc.prologue
-                0x00002c46       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
-                0x00002c46                __epilogue_restores__
+                0x00002f4c       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
+                0x00002f4c                __epilogue_restores__
  .text.libgcc.mul
-                0x00002c7c       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x00002c7c                __umulhisi3
-                0x00002c9a                . = ALIGN (0x2)
+                0x00002f82       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+                0x00002f82                __umulhisi3
+                0x00002fa0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00002c9a        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00002c9a                _exit
-                0x00002c9a                exit
+ .fini9         0x00002fa0        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00002fa0                _exit
+                0x00002fa0                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -960,11 +962,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00002c9a        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00002fa0        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00002c9e                _etext = .
+                0x00002fa4                _etext = .
 
-.data           0x00800100       0xc2 load address 0x00002c9e
+.data           0x00800100       0xc2 load address 0x00002fa4
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(random.o)
@@ -988,7 +990,7 @@ END GROUP
                 0x008001c2                _edata = .
                 0x008001c2                PROVIDE (__data_end, .)
 
-.bss            0x008001c2      0x249
+.bss            0x008001c2      0x24c
                 0x008001c2                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -1008,52 +1010,57 @@ END GROUP
                 0x008001d5        0x1 game.o
  .bss.pacman_y  0x008001d6        0x1 game.o
  .bss.pacman_x  0x008001d7        0x1 game.o
- .bss.lives     0x008001d8        0x1 game.o
+ .bss.ghost_eat
+                0x008001d8        0x2 game.o
+                0x008001d8                ghost_eat
+ .bss.powerup   0x008001da        0x1 game.o
+                0x008001da                powerup
+ .bss.lives     0x008001db        0x1 game.o
  .bss.num_pacdots
-                0x008001d9        0x2 game.o
- .bss.pellets   0x008001db       0x7c game.o
- .bss.pacdots   0x00800257       0x7c game.o
+                0x008001dc        0x2 game.o
+ .bss.pellets   0x008001de       0x7c game.o
+ .bss.pacdots   0x0080025a       0x7c game.o
  .bss.prev_time
-                0x008002d3        0x4 joystick.o
- .bss.prev_dir  0x008002d7        0x1 joystick.o
- .bss.adc_y     0x008002d8        0x2 joystick.o
- .bss.adc_x     0x008002da        0x2 joystick.o
- .bss.paused    0x008002dc        0x1 project.o
-                0x008002dc                paused
+                0x008002d6        0x4 joystick.o
+ .bss.prev_dir  0x008002da        0x1 joystick.o
+ .bss.adc_y     0x008002db        0x2 joystick.o
+ .bss.adc_x     0x008002dd        0x2 joystick.o
+ .bss.paused    0x008002df        0x1 project.o
+                0x008002df                paused
  .bss.shift_countdown.1854
-                0x008002dd        0x1 scrolling_char_display.o
+                0x008002e0        0x1 scrolling_char_display.o
  .bss.next_char_to_display
-                0x008002de        0x2 scrolling_char_display.o
+                0x008002e1        0x2 scrolling_char_display.o
  .bss.display_string
-                0x008002e0        0x2 scrolling_char_display.o
+                0x008002e3        0x2 scrolling_char_display.o
  .bss.next_col_ptr
-                0x008002e2        0x2 scrolling_char_display.o
- .bss.do_echo   0x008002e4        0x1 serialio.o
+                0x008002e5        0x2 scrolling_char_display.o
+ .bss.do_echo   0x008002e7        0x1 serialio.o
  .bss.clockTicks
-                0x008002e5        0x4 timer0.o
+                0x008002e8        0x4 timer0.o
  *(COMMON)
- COMMON         0x008002e9        0x8 score.o
-                0x008002e9                high_score
-                0x008002ed                score
- COMMON         0x008002f1      0x114 serialio.o
-                0x008002f1                out_insert_pos
-                0x008002f2                bytes_in_out_buffer
-                0x008002f3                out_buffer
-                0x008003f2                input_insert_pos
-                0x008003f3                input_buffer
-                0x00800403                input_overrun
-                0x00800404                bytes_in_input_buffer
- COMMON         0x00800405        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(iob.o)
-                0x00800405                __iob
-                0x0080040b                PROVIDE (__bss_end, .)
-                0x00002c9e                __data_load_start = LOADADDR (.data)
-                0x00002d60                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x008002ec        0x8 score.o
+                0x008002ec                high_score
+                0x008002f0                score
+ COMMON         0x008002f4      0x114 serialio.o
+                0x008002f4                out_insert_pos
+                0x008002f5                bytes_in_out_buffer
+                0x008002f6                out_buffer
+                0x008003f5                input_insert_pos
+                0x008003f6                input_buffer
+                0x00800406                input_overrun
+                0x00800407                bytes_in_input_buffer
+ COMMON         0x00800408        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(iob.o)
+                0x00800408                __iob
+                0x0080040e                PROVIDE (__bss_end, .)
+                0x00002fa4                __data_load_start = LOADADDR (.data)
+                0x00003066                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080040b        0x0
+.noinit         0x0080040e        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080040b                _end = .
+                0x0080040e                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -1138,131 +1145,131 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x398
+.debug_aranges  0x00000000      0x3a0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x30 buttons.o
  .debug_aranges
-                0x00000030       0x98 game.o
+                0x00000030       0xa0 game.o
  .debug_aranges
-                0x000000c8       0x28 joystick.o
+                0x000000d0       0x28 joystick.o
  .debug_aranges
-                0x000000f0       0x88 ledmatrix.o
+                0x000000f8       0x88 ledmatrix.o
  .debug_aranges
-                0x00000178       0x68 project.o
+                0x00000180       0x68 project.o
  .debug_aranges
-                0x000001e0       0x40 score.o
+                0x000001e8       0x40 score.o
  .debug_aranges
-                0x00000220       0x28 scrolling_char_display.o
+                0x00000228       0x28 scrolling_char_display.o
  .debug_aranges
-                0x00000248       0x50 serialio.o
+                0x00000250       0x50 serialio.o
  .debug_aranges
-                0x00000298       0x28 spi.o
+                0x000002a0       0x28 spi.o
  .debug_aranges
-                0x000002c0       0xa8 terminalio.o
+                0x000002c8       0xa8 terminalio.o
  .debug_aranges
-                0x00000368       0x30 timer0.o
+                0x00000370       0x30 timer0.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x3c5c
+.debug_info     0x00000000     0x3b4c
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x6cc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
  .debug_info    0x000006cc      0x193 buttons.o
- .debug_info    0x0000085f     0x110d game.o
- .debug_info    0x0000196c      0x151 joystick.o
- .debug_info    0x00001abd      0x530 ledmatrix.o
- .debug_info    0x00001fed      0x9d7 project.o
- .debug_info    0x000029c4      0x146 score.o
- .debug_info    0x00002b0a      0x64d scrolling_char_display.o
- .debug_info    0x00003157      0x3e9 serialio.o
- .debug_info    0x00003540       0xc1 spi.o
- .debug_info    0x00003601      0x532 terminalio.o
- .debug_info    0x00003b33      0x129 timer0.o
+ .debug_info    0x0000085f      0xffd game.o
+ .debug_info    0x0000185c      0x151 joystick.o
+ .debug_info    0x000019ad      0x530 ledmatrix.o
+ .debug_info    0x00001edd      0x9d7 project.o
+ .debug_info    0x000028b4      0x146 score.o
+ .debug_info    0x000029fa      0x64d scrolling_char_display.o
+ .debug_info    0x00003047      0x3e9 serialio.o
+ .debug_info    0x00003430       0xc1 spi.o
+ .debug_info    0x000034f1      0x532 terminalio.o
+ .debug_info    0x00003a23      0x129 timer0.o
 
-.debug_abbrev   0x00000000     0x159f
+.debug_abbrev   0x00000000     0x15e2
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x66e C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
  .debug_abbrev  0x0000066e       0xd6 buttons.o
- .debug_abbrev  0x00000744      0x3a9 game.o
- .debug_abbrev  0x00000aed       0xc6 joystick.o
- .debug_abbrev  0x00000bb3      0x137 ledmatrix.o
- .debug_abbrev  0x00000cea      0x2a5 project.o
- .debug_abbrev  0x00000f8f       0xa5 score.o
- .debug_abbrev  0x00001034      0x122 scrolling_char_display.o
- .debug_abbrev  0x00001156      0x230 serialio.o
- .debug_abbrev  0x00001386       0x7c spi.o
- .debug_abbrev  0x00001402       0xe3 terminalio.o
- .debug_abbrev  0x000014e5       0xba timer0.o
+ .debug_abbrev  0x00000744      0x3ec game.o
+ .debug_abbrev  0x00000b30       0xc6 joystick.o
+ .debug_abbrev  0x00000bf6      0x137 ledmatrix.o
+ .debug_abbrev  0x00000d2d      0x2a5 project.o
+ .debug_abbrev  0x00000fd2       0xa5 score.o
+ .debug_abbrev  0x00001077      0x122 scrolling_char_display.o
+ .debug_abbrev  0x00001199      0x230 serialio.o
+ .debug_abbrev  0x000013c9       0x7c spi.o
+ .debug_abbrev  0x00001445       0xe3 terminalio.o
+ .debug_abbrev  0x00001528       0xba timer0.o
 
-.debug_line     0x00000000     0x21dc
+.debug_line     0x00000000     0x2360
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x151 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
  .debug_line    0x00000151      0x167 buttons.o
- .debug_line    0x000002b8      0x94a game.o
- .debug_line    0x00000c02      0x18d joystick.o
- .debug_line    0x00000d8f      0x2ee ledmatrix.o
- .debug_line    0x0000107d      0x600 project.o
- .debug_line    0x0000167d      0x106 score.o
- .debug_line    0x00001783      0x244 scrolling_char_display.o
- .debug_line    0x000019c7      0x2b9 serialio.o
- .debug_line    0x00001c80      0x114 spi.o
- .debug_line    0x00001d94      0x31d terminalio.o
- .debug_line    0x000020b1      0x12b timer0.o
+ .debug_line    0x000002b8      0xace game.o
+ .debug_line    0x00000d86      0x18d joystick.o
+ .debug_line    0x00000f13      0x2ee ledmatrix.o
+ .debug_line    0x00001201      0x600 project.o
+ .debug_line    0x00001801      0x106 score.o
+ .debug_line    0x00001907      0x244 scrolling_char_display.o
+ .debug_line    0x00001b4b      0x2b9 serialio.o
+ .debug_line    0x00001e04      0x114 spi.o
+ .debug_line    0x00001f18      0x31d terminalio.o
+ .debug_line    0x00002235      0x12b timer0.o
 
-.debug_frame    0x00000000      0xb90
+.debug_frame    0x00000000      0xc14
  *(.debug_frame)
  .debug_frame   0x00000000       0x80 buttons.o
- .debug_frame   0x00000080      0x384 game.o
- .debug_frame   0x00000404       0x40 joystick.o
- .debug_frame   0x00000444      0x154 ledmatrix.o
- .debug_frame   0x00000598      0x14c project.o
- .debug_frame   0x000006e4       0x64 score.o
- .debug_frame   0x00000748       0x50 scrolling_char_display.o
- .debug_frame   0x00000798       0xfc serialio.o
- .debug_frame   0x00000894       0x34 spi.o
- .debug_frame   0x000008c8      0x23c terminalio.o
- .debug_frame   0x00000b04       0x8c timer0.o
+ .debug_frame   0x00000080      0x408 game.o
+ .debug_frame   0x00000488       0x40 joystick.o
+ .debug_frame   0x000004c8      0x154 ledmatrix.o
+ .debug_frame   0x0000061c      0x14c project.o
+ .debug_frame   0x00000768       0x64 score.o
+ .debug_frame   0x000007cc       0x50 scrolling_char_display.o
+ .debug_frame   0x0000081c       0xfc serialio.o
+ .debug_frame   0x00000918       0x34 spi.o
+ .debug_frame   0x0000094c      0x23c terminalio.o
+ .debug_frame   0x00000b88       0x8c timer0.o
 
-.debug_str      0x00000000     0x1120
+.debug_str      0x00000000     0x1141
  *(.debug_str)
  .debug_str     0x00000000      0x255 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega324a/avr5/crtatmega324a.o
  .debug_str     0x00000255      0x1cd buttons.o
                                 0x215 (size before relaxing)
- .debug_str     0x00000422      0x465 game.o
-                                0x650 (size before relaxing)
- .debug_str     0x00000887       0x6c joystick.o
+ .debug_str     0x00000422      0x486 game.o
+                                0x679 (size before relaxing)
+ .debug_str     0x000008a8       0x6c joystick.o
                                 0x1f4 (size before relaxing)
- .debug_str     0x000008f3      0x185 ledmatrix.o
+ .debug_str     0x00000914      0x185 ledmatrix.o
                                 0x31f (size before relaxing)
- .debug_str     0x00000a78      0x246 project.o
+ .debug_str     0x00000a99      0x246 project.o
                                 0x513 (size before relaxing)
- .debug_str     0x00000cbe       0x4b score.o
+ .debug_str     0x00000cdf       0x4b score.o
                                 0x1cb (size before relaxing)
- .debug_str     0x00000d09      0x1b9 scrolling_char_display.o
+ .debug_str     0x00000d2a      0x1b9 scrolling_char_display.o
                                 0x3b3 (size before relaxing)
- .debug_str     0x00000ec2       0xda serialio.o
+ .debug_str     0x00000ee3       0xda serialio.o
                                 0x2db (size before relaxing)
- .debug_str     0x00000f9c       0x18 spi.o
+ .debug_str     0x00000fbd       0x18 spi.o
                                 0x19b (size before relaxing)
- .debug_str     0x00000fb4      0x12e terminalio.o
+ .debug_str     0x00000fd5      0x12e terminalio.o
                                 0x3e7 (size before relaxing)
- .debug_str     0x000010e2       0x3e timer0.o
+ .debug_str     0x00001103       0x3e timer0.o
                                 0x1d6 (size before relaxing)
 
-.debug_loc      0x00000000     0x3085
+.debug_loc      0x00000000     0x2ec1
  *(.debug_loc)
  .debug_loc     0x00000000      0x179 buttons.o
- .debug_loc     0x00000179     0x1637 game.o
- .debug_loc     0x000017b0       0x81 joystick.o
- .debug_loc     0x00001831      0x54a ledmatrix.o
- .debug_loc     0x00001d7b      0x641 project.o
- .debug_loc     0x000023bc      0x242 scrolling_char_display.o
- .debug_loc     0x000025fe      0x28b serialio.o
- .debug_loc     0x00002889       0x59 spi.o
- .debug_loc     0x000028e2      0x6d8 terminalio.o
- .debug_loc     0x00002fba       0xcb timer0.o
+ .debug_loc     0x00000179     0x1473 game.o
+ .debug_loc     0x000015ec       0x81 joystick.o
+ .debug_loc     0x0000166d      0x54a ledmatrix.o
+ .debug_loc     0x00001bb7      0x641 project.o
+ .debug_loc     0x000021f8      0x242 scrolling_char_display.o
+ .debug_loc     0x0000243a      0x28b serialio.o
+ .debug_loc     0x000026c5       0x59 spi.o
+ .debug_loc     0x0000271e      0x6d8 terminalio.o
+ .debug_loc     0x00002df6       0xcb timer0.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1282,19 +1289,19 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x438
+.debug_ranges   0x00000000      0x440
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x20 buttons.o
- .debug_ranges  0x00000020      0x1d8 game.o
- .debug_ranges  0x000001f8       0x18 joystick.o
- .debug_ranges  0x00000210       0x78 ledmatrix.o
- .debug_ranges  0x00000288       0x58 project.o
- .debug_ranges  0x000002e0       0x30 score.o
- .debug_ranges  0x00000310       0x18 scrolling_char_display.o
- .debug_ranges  0x00000328       0x40 serialio.o
- .debug_ranges  0x00000368       0x18 spi.o
- .debug_ranges  0x00000380       0x98 terminalio.o
- .debug_ranges  0x00000418       0x20 timer0.o
+ .debug_ranges  0x00000020      0x1e0 game.o
+ .debug_ranges  0x00000200       0x18 joystick.o
+ .debug_ranges  0x00000218       0x78 ledmatrix.o
+ .debug_ranges  0x00000290       0x58 project.o
+ .debug_ranges  0x000002e8       0x30 score.o
+ .debug_ranges  0x00000318       0x18 scrolling_char_display.o
+ .debug_ranges  0x00000330       0x40 serialio.o
+ .debug_ranges  0x00000370       0x18 spi.o
+ .debug_ranges  0x00000388       0x98 terminalio.o
+ .debug_ranges  0x00000420       0x20 timer0.o
 
 .debug_macro
  *(.debug_macro)

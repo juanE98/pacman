@@ -14,6 +14,7 @@
 #include <avr/pgmspace.h>
 #include <stdlib.h>
 #include "score.h"
+#include "timer0.h"
 /* Stdlib needed for random() - random number generator */
 ///////////////////////////////////////////////////////////
 // Initial game field
@@ -90,6 +91,15 @@ static uint16_t num_pacdots;
 
 //Lives of pacman (player)
 static uint8_t lives; 
+
+//Time when power pellet was collected. 
+static uint32_t powerup_time_start = 0 ;
+
+//Powerup status (0= normal, 1= powerup activated)
+uint8_t powerup = 0;
+
+//Ghost eat counter(1= 200pts  ,2 = 400 pts, 3= 800 pts ,4= 1600pts)
+uint16_t ghost_eat = 0 ; 
 
 //Initial lives of pacman (player)
 #define MAX_LIVES 3
@@ -270,7 +280,9 @@ static void eat_pellet(void){
 	printf("%s", "High Score:\n");
 	move_cursor(37,11);
 	printf("%11lu\n", get_highscore() );
-	
+	powerup = 1; 
+	ghost_eat =1; 
+	powerup_time_start = get_current_time(); 
 }
 
 
@@ -686,7 +698,7 @@ int8_t move_pacman(void) {
 		 pacman_y++;
 	 }
 
-	if(cell_contents >= 0) {
+	if(cell_contents >= 0 && powerup == 0) {
 		
 		// We've encountered a ghost - draw both at the location
 		// Set the background colour to that of the ghost
@@ -704,7 +716,40 @@ int8_t move_pacman(void) {
 		draw_ghost_at(cell_contents, GHOST_HOME_X_LEFT, GHOST_HOME_Y);
 		
 		
-	} else {
+	} else if(cell_contents >= 0 && powerup == 1){
+		//Reset Ghost back to home.
+		ghost_x[cell_contents] = GHOST_HOME_X_LEFT ;
+		ghost_y[cell_contents] = GHOST_HOME_Y ;
+		//Draw ghost back home.
+		draw_ghost_at(cell_contents, GHOST_HOME_X_LEFT, GHOST_HOME_Y);
+		if(ghost_eat==1){
+			add_to_score(200);
+			ghost_eat++ ; 
+		}else if(ghost_eat==2){
+			add_to_score(400); 
+			ghost_eat++; 
+		}else if(ghost_eat==3){
+			add_to_score(800);
+			ghost_eat++; 
+		}else if(ghost_eat==4){
+			add_to_score(1600);
+		} 
+		move_cursor (37, 8);
+		printf("%13s", "Score: \n");
+		move_cursor(37,9);
+		printf("%11lu\n", get_score());
+
+		if (get_score() > get_highscore()) {
+			set_highscore(get_score()) ;
+		}
+		
+		move_cursor(37, 10) ;
+		printf("%s", "High Score:\n");
+		
+		move_cursor(37,11);
+		printf("%11lu\n", get_highscore() );
+	}
+	else {
 		if(cell_contents == CELL_CONTAINS_PACDOT) {
 			eat_pacdot();
 		} else if (cell_contents == CELL_CONTAINS_PELLET) {
@@ -767,7 +812,7 @@ void move_ghost(int8_t ghostnum) {
 	}
 	
 	// Check if the pac-man is at this ghost location. 
-	if(is_pacman_at(ghost_x[ghostnum], ghost_y[ghostnum])) {
+	if(is_pacman_at(ghost_x[ghostnum], ghost_y[ghostnum]) && powerup == 0) {
 		// Ghost has just moved into the pac-man. Lose 1 life.
 		lives--;
 		move_cursor(37, 5 );
@@ -783,7 +828,44 @@ void move_ghost(int8_t ghostnum) {
 		//Draw ghost back home.
 		draw_ghost_at(ghostnum, GHOST_HOME_X_LEFT, GHOST_HOME_Y);
 		
-	} else {
+	} else if(is_pacman_at(ghost_x[ghostnum], ghost_y[ghostnum]) && powerup == 1)
+	{
+		set_display_attribute(ghost_colours[ghostnum]);
+		draw_pacman_at(ghost_x[ghostnum], ghost_y[ghostnum]);
+		//Reset Ghost back to home.
+		ghost_x[ghostnum] = GHOST_HOME_X_LEFT ;
+		ghost_y[ghostnum] = GHOST_HOME_Y ;
+		//Draw ghost back home.
+		draw_ghost_at(ghostnum, GHOST_HOME_X_LEFT, GHOST_HOME_Y);
+		if(ghost_eat==1){
+			add_to_score(200);
+			ghost_eat++ ;
+			}else if(ghost_eat==2){
+			add_to_score(400);
+			ghost_eat++;
+			}else if(ghost_eat==3){
+			add_to_score(800);
+			ghost_eat++;
+			}else if(ghost_eat==4){
+			add_to_score(1600);
+		}
+		move_cursor (37, 8);
+		printf("%13s", "Score: \n");
+		move_cursor(37,9);
+		printf("%11lu\n", get_score());
+
+		if (get_score() > get_highscore()) {
+			set_highscore(get_score()) ;
+		}
+		
+		move_cursor(37, 10) ;
+		printf("%s", "High Score:\n");
+		
+		move_cursor(37,11);
+		printf("%11lu\n", get_highscore() );
+		
+	}
+	else {
 		
 		draw_ghost_at(ghostnum, ghost_x[ghostnum], ghost_y[ghostnum]);
 		
@@ -797,6 +879,9 @@ int8_t is_game_over(void) {
 
 int8_t is_level_complete(void) {
 	return (num_pacdots == 0);
+}
+uint8_t is_powerup(void){
+	return powerup ; 
 }
 
 
